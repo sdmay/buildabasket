@@ -7,11 +7,9 @@ module.exports = function (sequelize, DataTypes) {
     password: {
       type: DataTypes.STRING,
       allowNull: false
-    },
-    orders: {
-      type: DataTypes.TEXT,
     }
   },
+  
   {
     classMethods: {
       associate: function(models) {

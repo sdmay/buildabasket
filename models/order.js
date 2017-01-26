@@ -4,6 +4,16 @@ module.exports = function (sequelize, DataTypes) {
       order: {
           type: DataTypes.TEXT,
           allowNull: false
+      },
+      totalcost: {
+          type: DataTypes.INTEGER,
+          allowNull: false
+      },
+      orderedforanniversary: {
+          type: DataTypes.BOOLEAN
+      },
+      orderedforbirthday: {
+          type: DataTypes.BOOLEAN
       }
   },
   
