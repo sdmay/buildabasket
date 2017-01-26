@@ -1,6 +1,6 @@
 module.exports = function(sequelize, DataTypes) {
   var Basket = sequelize.define("Basket", {
-    basket_name: {
+    item_name: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
@@ -24,21 +24,6 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.TEXT,
             allowNull: false
         }
-  },
-    
-
-    {
-      classMethods: {
-        associate: function(models) {
-          Basket.belongsTo(models.User,
-            {
-              onDelete: "cascade",
-              foreignKey: {
-                allowNull: false
-              }
-            });
-        }
-      }
-    });
+  });
   return Basket;
 };

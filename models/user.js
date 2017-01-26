@@ -8,14 +8,16 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false
     },
-    orders: {
-      type: DataTypes.TEXT,
+    isAdmin: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
     }
   },
+
   {
     classMethods: {
       associate: function(models) {
-        User.hasMany(models.Basket);
+        User.hasMany(models.Order);
       }
     }
   });
