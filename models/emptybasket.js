@@ -1,6 +1,6 @@
 module.exports = function (sequelize, DataTypes) {
-  var Basket = sequelize.define("Basket", {
-    item_name: {
+  var EmptyBasket = sequelize.define("EmptyBasket", {
+    basket_name: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
@@ -16,7 +16,7 @@ module.exports = function (sequelize, DataTypes) {
     },
 
     price: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.DECIMAL,
       allowNull: false
     },
     quantity: {
@@ -29,5 +29,5 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: false
     }
   });
-  return Basket;
+  return EmptyBasket;
 };
