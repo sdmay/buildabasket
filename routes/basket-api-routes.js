@@ -40,5 +40,37 @@ module.exports = function (app) {
        
     });
 
+    app.get("/about", function (req, res) {
+
+                   // console.log(dbItem);
+            res.render('about')
+            // res.json(dbItem);
+       
+    });
+
+    app.get("/refund", function (req, res) {
+
+                   // console.log(dbItem);
+            res.render('refund')
+            // res.json(dbItem);
+       
+    });
+
+    app.get("/faq", function (req, res) {
+
+                   // console.log(dbItem);
+            res.render('faq')
+            // res.json(dbItem);
+       
+    });
+
+    app.get("/blog", function (req, res) {
+
+                   // console.log(dbItem);
+            res.render('blog')
+            // res.json(dbItem);
+       
+    });
+
 
 }
