@@ -39,7 +39,7 @@ module.exports = function (app) {
             console.log(app.get('superSecret'));
             var token = jwt.sign(user.dataValues.name, app.get('superSecret'), {
                 algorithm: 'HS256'
-              
+
             });
 
             // return the information including token as JSON
@@ -56,4 +56,37 @@ module.exports = function (app) {
 
         // app.use('/api', apiRoutes);
     });
+
+    app.use(function (req, res, next) {
+console.log("MIDDLEWARE")
+        // check header or url parameters or post parameters for token
+        var token = req.body.token || req.query.token || req.headers['x-access-token'];
+
+        // decode token
+        if (token) {
+
+            // verifies secret and checks exp
+            jwt.verify(token, app.get('superSecret'), function (err, decoded) {
+                if (err) {
+                    return res.json({ success: false, message: 'Failed to authenticate token.' });
+                } else {
+                    // if everything is good, save to request for use in other routes
+                    req.decoded = decoded;
+                    next();
+                }
+            });
+
+        } else {
+
+            // if there is no token
+            // return an error
+            return res.status(403).send({
+                success: false,
+                message: 'No token provided.'
+            });
+
+        }
+    });
 }
+
+// eyJhbGciOiJIUzI1NiJ9.VG9t.lsIvGkitNhC2MIfCPPF_95UzaA_p3NCYPRZhelbRtC4
