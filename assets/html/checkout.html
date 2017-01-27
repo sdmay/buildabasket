@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Build a Basket</title>
+
+    <!--CSS links-->
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!--Google Fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Arsenal" rel="stylesheet">
+    <!--Font Awesome-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+
+    <!--jQuery-->
+    <script
+    src="https://code.jquery.com/jquery-3.1.1.min.js"
+    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+
+</head>
+<body>
+
+<!--Navbar-->
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Basket</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">Sign Up or Login</a></li>
+        <li><a href="#"><i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></a></i></li>
+
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<div class="row">
+    <!--Basket contents-->
+    <div class="col-sm-4">
+
+    </div>
+
+    <!--Finished product-->
+    <div class="col-sm-8">
+
+    </div>
+</div>
+
+<div class="row">
+    <!--Billing info-->
+    <div class="col-sm-5">
+        <form class="form-inline">
+            <div class="form-group">
+                <label class="sr-only" for="firstName">First Name</label>
+                <input type="name" class="form-control" id="" placeholder="First Name">
+            </div>
+            <div class="form-group">
+                <label class="sr-only" for="lastName">Last Name</label>
+                <input type="name" class="form-control" id="" placeholder="Last Name">
+            </div>
+            <div class="form-group">
+                <label class="sr-only" for="creditCard">Credit Card</label>
+                <input type="name" class="form-control" id="" placeholder="Credit Card">
+            </div>
+            <div class="form-group">
+                <label class="sr-only" for="creditCard">Exp Date</label>
+                <input type="name" class="form-control" id="" placeholder="Exp Date">
+            </div>
+            <div class="form-group">
+                <label class="sr-only" for="">Billing Address (Line 1)</label>
+                <input type="name" class="form-control" id="" placeholder="Billing Address (Line 1)">
+            </div>
+            <div class="form-group">
+                <label class="sr-only" for="">Billing Address (Line 2)</label>
+                <input type="name" class="form-control" id="" placeholder="Billing Address (Line 2)">
+            </div>
+            <div class="form-group">
+                <label class="sr-only" for="">City</label>
+                <input type="name" class="form-control" id="" placeholder="City">
+            </div>
+            <div class="form-group">
+                <label class="sr-only" for="">State</label>
+                <input type="name" class="form-control" id="" placeholder="State">
+            </div>
+            <div class="form-group">
+                <label class="sr-only" for="">Zip Code</label>
+                <input type="name" class="form-control" id="" placeholder="Zip Code">
+            </div>
+        </form>
+    </div>
+
+    <!--Spacer-->
+    <div class="col-sm-2"></div>
+
+    <!--Shipping info-->
+    <div class="col-sm-5">
+        <form class="form-inline">
+            <div class="form-group">
+                <label class="sr-only" for="firstName">First Name</label>
+                <input type="name" class="form-control" id="" placeholder="First Name">
+            </div>
+            <div class="form-group">
+                <label class="sr-only" for="lastName">Last Name</label>
+                <input type="name" class="form-control" id="" placeholder="Last Name">
+            </div>
+            <div class="form-group">
+                <label class="sr-only" for="">Shipping Address (Line 1)</label>
+                <input type="name" class="form-control" id="" placeholder="Shipping Address (Line 1)">
+            </div>
+            <div class="form-group">
+                <label class="sr-only" for="">Shipping Address (Line 2)</label>
+                <input type="name" class="form-control" id="" placeholder="Shipping Address (Line 2)">
+            </div>
+            <div class="form-group">
+                <label class="sr-only" for="">City</label>
+                <input type="name" class="form-control" id="" placeholder="City">
+            </div>
+            <div class="form-group">
+                <label class="sr-only" for="">State</label>
+                <input type="name" class="form-control" id="" placeholder="State">
+            </div>
+            <div class="form-group">
+                <label class="sr-only" for="">Zip Code</label>
+                <input type="name" class="form-control" id="" placeholder="Zip Code">
+            </div>
+
+            <!--Same as Billing Button-->
+            <button class="btn btn-default" type="button">Same as Billing</button>
+        </form>
+
+        <!--Submit order button-->
+        <button class="btn btn-default" type="submit">Submit Order</button>
+    </div>
+
+</div>
+
+<!--Footer-->
+<div class="row">
+    <div class="col-sm-6">
+        <h3>GET UPDATES TO YOUR INBOX</h3>
+        <p>Be the first to know about fresh deals and new items so you can continue to do better than flowers</p>
+
+        <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search for...">
+        <span class="input-group-btn">
+            <button class="btn btn-default" type="button">Ok!</button>
+        </span>
+        </div>
+    </div>
+
+    <div class="col-sm-3">
+        <h3>ABOUT US</h3>
+            <a href="#">About</a><br>
+            <a href="#">Blog</a><br>
+            <a href="#">FAQ</a><br>
+            <a href="#">Refund Policy</a><br>
+    </div>
+
+    <div class="col-sm-3">
+        <h3>FOLLOW US</h3>
+            <a href="#"><i class="fa fa-facebook-square fa-2x" aria-hidden="true"></i> Facebook</a><br>
+            <a href="#"><i class="fa fa-twitter-square fa-2x" aria-hidden="true"></i> Twitter</a><br>
+            <a href="#"><i class="fa fa-google-plus-square fa-2x" aria-hidden="true"></i> Google+</a><br>
+            <a href="#"><i class="fa fa-linkedin-square fa-2x" aria-hidden="true"></i> LinkedIn</a><br>
+    </div>
+
+</div>
+
+<script src=""></script>
+
+</body>
+</html>
