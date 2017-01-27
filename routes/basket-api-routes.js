@@ -4,7 +4,7 @@ var db = require("../models");
 // =============================================================
 module.exports = function (app) {
 
-    app.get("/complete", function (req, res) {
+    app.get("/", function (req, res) {
 
         db.CompleteBasket.findAll({}).then(function (dbCompleteBasket) {
             // console.log(dbCompleteBasket);
@@ -30,6 +30,14 @@ module.exports = function (app) {
             res.render('items', {dbItem})
             // res.json(dbItem);
         });
+    });
+
+    app.get("/contact", function (req, res) {
+
+                   // console.log(dbItem);
+            res.render('contact')
+            // res.json(dbItem);
+       
     });
 
 

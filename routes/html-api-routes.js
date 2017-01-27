@@ -7,8 +7,13 @@ module.exports = function (app) {
         res.redirect("/complete")
     });
 
-    app.get("/contact", function (req, res) {
-        res.sendFile(path.join(__dirname + "/../public/contact_page.html"));
+       app.get("/item", function (req, res) {
+
+        
+            // console.log(dbItem);
+            res.render('items', { dbItem })
+            // res.json(dbItem);
+        
     });
       app.get("/build", function (req, res) {
         res.sendFile(path.join(__dirname + "/../public/build.html"));
