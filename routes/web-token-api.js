@@ -1,6 +1,7 @@
 var db = require("../models");
-// var express = require('express')
-// var apiRoutes = express.Router();
+var express = require('express');
+var app = express();
+var apiRoutes = express.Router();
 var jwt = require('jsonwebtoken');
 
 // Routes
@@ -9,33 +10,18 @@ module.exports = function (app) {
 
 
     // GET route for getting all of the posts
-    app.get("/api", function (req, res) {
+    apiRoutes.get("/", function (req, res) {
         console.log("INSIDE");
         res.json({ message: "Welcome" });
 
     });
 
-      app.post("/api/create", function (req, res) {
-        console.log("INSIDE CREATE");
-        db.User.create({
-            name:req.body.name,
-            password:req.body.password
-        }).then(function success(result){
-            res.json(result);
-        });
-    });
 
-    app.get("/api/users", function (req, res) {
-         console.log("INSIDE USERS");
-        db.User.findAll({}).then((result) => {
-            res.json(result);
-        })
-    });
 
-    app.post("/api/authenticate", function (req, res) {
+    apiRoutes.post("/authenticate", function (req, res) {
         console.log("INSIDE AUTHENTICATE");
         db.User.findOne({
-            name: req.body.name
+            email: req.body.email
         }).then(function success(user) {
             console.log(user)
             if (!user) {
@@ -45,10 +31,10 @@ module.exports = function (app) {
             if (user.password != req.body.password) {
                 res.json({ success: false, message: 'Authentication failed. Wrong password.' });
             }
-            console.log("above yo momma" + user.dataValues.name + user.dataValues.password);
+            console.log("above yo momma" + user.dataValues.email + user.dataValues.password);
             console.log("above token" + user.dataValues);
             console.log(app.get('superSecret'));
-            var token = jwt.sign(user.dataValues.name, app.get('superSecret'), {
+            var token = jwt.sign(user.dataValues.email, app.get('superSecret'), {
                 algorithm: 'HS256'
 
             });
@@ -68,8 +54,8 @@ module.exports = function (app) {
         // app.use('/api', apiRoutes);
     });
 
-    app.use(function (req, res, next) {
-console.log("MIDDLEWARE")
+    apiRoutes.use(function (req, res, next) {
+        console.log("MIDDLEWARE")
         // check header or url parameters or post parameters for token
         var token = req.body.token || req.query.token || req.headers['x-access-token'];
 
@@ -98,6 +84,25 @@ console.log("MIDDLEWARE")
 
         }
     });
+    
+    apiRoutes.post("/create", function (req, res) {
+        console.log("INSIDE CREATE");
+        db.User.create({
+            email: req.body.email,
+            password: req.body.password
+        }).then(function success(result) {
+            res.json(result);
+        });
+    });
+
+    apiRoutes.get("/users", function (req, res) {
+        console.log("INSIDE USERS");
+        db.User.findAll({}).then((result) => {
+            res.json(result);
+        })
+    });
 }
+
+app.use('/api', apiRoutes);
 
 // eyJhbGciOiJIUzI1NiJ9.VG9t.lsIvGkitNhC2MIfCPPF_95UzaA_p3NCYPRZhelbRtC4
