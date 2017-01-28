@@ -40,6 +40,14 @@ module.exports = function (app) {
        
     });
 
+        app.get("/login", function (req, res) {
+
+                   // console.log(dbItem);
+            res.render('login')
+            // res.json(dbItem);
+       
+    });
+
     app.get("/about", function (req, res) {
 
                    // console.log(dbItem);

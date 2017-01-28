@@ -15,14 +15,25 @@ module.exports = function (app) {
 
     });
 
+      app.post("/api/create", function (req, res) {
+        console.log("INSIDE CREATE");
+        db.User.create({
+            name:req.body.name,
+            password:req.body.password
+        }).then(function success(result){
+            res.json(result);
+        });
+    });
+
     app.get("/api/users", function (req, res) {
+         console.log("INSIDE USERS");
         db.User.findAll({}).then((result) => {
             res.json(result);
         })
     });
 
     app.post("/api/authenticate", function (req, res) {
-        console.log("AUTHENTICATE");
+        console.log("INSIDE AUTHENTICATE");
         db.User.findOne({
             name: req.body.name
         }).then(function success(user) {
