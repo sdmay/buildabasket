@@ -1,2 +1,17 @@
 /*Google Font*/
 /*font-family: 'Arsenal', sans-serif;*/
+
+#droppable{
+    z-index: 1;
+    position: absolute;
+}
+
+#draggable{
+    z-index: 10;
+    position: absolute;
+}
+
+#front_droppable{
+    z-index: 100;
+    position: absolute;
+}
