@@ -6,7 +6,9 @@
 // =============================================================
 var express = require("express");
 var bodyParser = require("body-parser");
-
+var jwt = require('jsonwebtoken');
+var morgan = require('morgan');
+var config = require('./config');
 // Sets up the Express App
 // =============================================================
 var app = express();
@@ -14,6 +16,10 @@ var PORT = process.env.PORT || 8080;
 
 // Requiring our models for syncing
 var db = require("./models");
+var exphbs = require("express-handlebars");
+
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
 
 // Sets up the Express app to handle data parsing
 app.use(bodyParser.json());
@@ -24,11 +30,16 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 // Static directory
 app.use(express.static("./public"));
 
+app.set('superSecret', config.secret);
+
+app.use(morgan('dev'));
 // Routes =============================================================
 
-// require("./routes/html-routes.js")(app);
+require("./routes/html-api-routes.js")(app);
+require("./routes/basket-api-routes.js")(app);
 // require("./routes/-api-routes.js")(app);
 // require("./routes/-api-routes.js")(app);
+// require("./routes/web-token-api.js")(app);
 
 db.sequelize.sync({}).then(function() {
   app.listen(PORT, function() {

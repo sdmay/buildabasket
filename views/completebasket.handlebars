@@ -1,0 +1,44 @@
+
+{{#each dbCompleteBasket}}
+        <div class="col-sm-3">
+            
+            <img src="{{image}}" alt="" class="image">
+            <p>{{basket_name}}</p>
+            <p>{{description}}</p>
+            <p>${{price}}</p>
+            <a class="btn btn-primary btn-lg" href="#" role="button"></a>
+            
+        </div>
+        {{/each}}
+
+    <!--<ul> {{#each dbCompleteBasket}}
+        <li>
+            <img src="{{image}}" alt="">
+            <p>{{basket_name}}</p>
+            <p>{{price}}</p>
+            <a class="btn btn-primary btn-lg" href="#" role="button"></a>
+            </li>
+            {{/each}}
+    </ul>-->
+
+<!--<div class="row">
+    <div class="col-md-6">
+        <h2 class="words">You have CREATED:</h2>
+
+        <ul class="list-group center">
+            {{#each dbCompleteBasket}}
+            
+            <li class="list-group-item answer">
+                <p>                 
+                    <form action="burgers/update/{{id}}?_method=PUT" method="POST">
+                        <input type="hidden" name="id" value="{{id}}">
+                        
+                       {{basket_name}} <button type="submit" class="btn btn-danger" id="{{id}}">Devour!</button>
+                    </form>
+                </p>
+            </li>
+            
+            {{/each}}
+        </ul>
+
+    </div>-->
