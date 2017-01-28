@@ -1,7 +1,6 @@
 /*Google Font*/
 /*font-family: 'Arsenal', sans-serif;*/
 
-<<<<<<< HEAD
 #droppable{
     z-index: 1;
     position: absolute;
@@ -15,8 +14,7 @@
 #front_droppable{
     z-index: 100;
     position: absolute;
-=======
+
 .site-name {
     font-family: 'Arsenal', sans-serif;
->>>>>>> e56e52e8816f3d6c15dd1cd701ed1a2225b2648b
 }
