@@ -80,5 +80,13 @@ module.exports = function (app) {
        
     });
 
+        app.get("/checkout", function (req, res) {
+
+                   // console.log(dbItem);
+            res.render('checkout')
+            // res.json(dbItem);
+       
+    });
+
 
 }
