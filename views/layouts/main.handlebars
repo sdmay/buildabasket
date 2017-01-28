@@ -5,10 +5,7 @@
     <title>Build a Basket</title>
 
     <!--CSS links-->
-    <script
-    src="https://code.jquery.com/jquery-3.1.1.min.js"
-    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-    crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <link rel="stylesheet" href="../assets/css/reset.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!--Google Fonts-->
@@ -106,9 +103,12 @@
 
 {{!--Modal function, checkout.handlebars--}}
 <script>
-$('#modalButton').on('shown.bs.modal', function () {
-  $('#myModal').focus()
-})
+    $("#submit").click(function(){
+        console.log("CLICK")
+        $("#myModal").modal("toggle");
+    });
+
+</script>
 </script>
 </body>
 </html>
