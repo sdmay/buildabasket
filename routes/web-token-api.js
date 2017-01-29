@@ -1,16 +1,16 @@
 var db = require("../models");
-var express = require('express');
+var express = require("express");
+var router = express.Router();
 var app = express();
-var apiRoutes = express.Router();
-var jwt = require('jsonwebtoken');
+var jwt = require("jsonwebtoken");
 
-// Routes
+// router
 // =============================================================
-module.exports = function (app) {
+// module.exports = function (app) {
 
 
     // GET route for getting all of the posts
-    apiRoutes.get("/", function (req, res) {
+    router.get("/", function (req, res) {
         console.log("INSIDE");
         res.json({ message: "Welcome" });
 
@@ -18,7 +18,7 @@ module.exports = function (app) {
 
 
 
-    apiRoutes.post("/authenticate", function (req, res) {
+    router.post("/api/authenticate", function (req, res) {
         console.log("INSIDE AUTHENTICATE");
         db.User.findOne({
             email: req.body.email
@@ -33,11 +33,13 @@ module.exports = function (app) {
             }
             console.log("above yo momma" + user.dataValues.email + user.dataValues.password);
             console.log("above token" + user.dataValues);
-            console.log(app.get('superSecret'));
-            var token = jwt.sign(user.dataValues.email, app.get('superSecret'), {
+            // var token = jwt.sign(user.dataValues.email, app.get('superSecret'), {
+            //     algorithm: 'HS256'
+            // });
+            var token = jwt.sign(user.dataValues.email, 'basket', {
                 algorithm: 'HS256'
-
             });
+
 
             // return the information including token as JSON
             res.json({
@@ -46,16 +48,16 @@ module.exports = function (app) {
                 token: token
             });
 
-        }).then(function error(result) {
-            console.log("ERROR");
-            res.json({ success: false, message: 'Authentication failed. User not found.' });
         });
 
-        // app.use('/api', apiRoutes);
+        // app.use('/api', apirouter);
     });
 
-    apiRoutes.use(function (req, res, next) {
+    router.use(function (req, res, next) {
         console.log("MIDDLEWARE")
+        if (req.path == "/api/authenticate") { next(); return; }
+        // if ( req.method != "GET" ) { return false; }
+
         // check header or url parameters or post parameters for token
         var token = req.body.token || req.query.token || req.headers['x-access-token'];
 
@@ -67,7 +69,7 @@ module.exports = function (app) {
                 if (err) {
                     return res.json({ success: false, message: 'Failed to authenticate token.' });
                 } else {
-                    // if everything is good, save to request for use in other routes
+                    // if everything is good, save to request for use in other router
                     req.decoded = decoded;
                     next();
                 }
@@ -85,7 +87,7 @@ module.exports = function (app) {
         }
     });
     
-    apiRoutes.post("/create", function (req, res) {
+    router.post("/create", function (req, res) {
         console.log("INSIDE CREATE");
         db.User.create({
             email: req.body.email,
@@ -95,14 +97,14 @@ module.exports = function (app) {
         });
     });
 
-    apiRoutes.get("/users", function (req, res) {
+    router.get("/users", function (req, res) {
         console.log("INSIDE USERS");
         db.User.findAll({}).then((result) => {
             res.json(result);
         })
     });
-}
-
-app.use('/api', apiRoutes);
+// }
+module.exports = router;
+//app.use('/api', router);
 
 // eyJhbGciOiJIUzI1NiJ9.VG9t.lsIvGkitNhC2MIfCPPF_95UzaA_p3NCYPRZhelbRtC4
