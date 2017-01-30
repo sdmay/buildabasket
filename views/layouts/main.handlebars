@@ -207,7 +207,10 @@ $("#authenticateUser").on("click", function(event) {
 
 });
 
-
+$("#emptyBasket").on("click", function() {
+   var picture = $(this).siblings("img").attr("src");
+     window.location.href='/item';
+});
 
 
 </script>

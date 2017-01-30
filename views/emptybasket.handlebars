@@ -27,10 +27,12 @@
                 {{!--carousel item--}}
             {{#each dbEmptyBasket}}
                 <div class="item">
+                    <div class="simpleCart_shelfItem">
                     <img src="{{image}}" alt="" class="img-responsive center-block">
                     <p>{{basket_name}}</p>
-                    <p>{{price}}</p>
-                    <a class="btn btn-primary btn-lg item_add" href="javascript:;">Select</a>
+                    <p class="item_price">${{price}}</p>
+                    <a class="btn btn-primary btn-lg item_add" href="javascript:;" id="emptyBasket">Select</a>
+                </div>
                 </div>
             {{/each}}
 
