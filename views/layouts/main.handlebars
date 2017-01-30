@@ -207,8 +207,13 @@ $("#authenticateUser").on("click", function(event) {
 
 });
 
+
 $("#emptyBasket").on("click", function() {
-   var picture = $(this).siblings("img").attr("src");
+    var p = $(this).siblings("img").attr("src");
+    var img1 = document.createElement("img");
+    img1.src = p;
+
+      console.log(img1)
      window.location.href='/item';
 });
 
