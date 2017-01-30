@@ -158,6 +158,12 @@ $("#myModal").modal("toggle");
         
     });
 
+// Checkout modal
+ $(".addToCart").click(function(){
+        console.log("CLICK")
+$("#completeModal").modal("toggle");
+ });
+
     // CREATE USER
 $("#createAccount").on("click", function(event) {
   event.preventDefault();
@@ -209,7 +215,7 @@ $("#authenticateUser").on("click", function(event) {
 });
 
 var i = [];
-$("#emptyBasket").on("click", function() {
+$(".empty").on("click", function() {
     var img = new Image();
     img.src = $(this).siblings("img").attr("src");
     var p = $(this).siblings("img").attr("src");

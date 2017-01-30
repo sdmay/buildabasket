@@ -20,11 +20,33 @@
     <!--<input type="text" value="1" class="item_Quantity">-->
     <p>{{description}}</p>
     <span class="item_price">${{price}}</span>
-    <a class="btn btn-primary btn-lg item_add" href="javascript:;"> Add to Cart </a>
+    <a class="btn btn-primary btn-lg item_add addToCart" href="javascript:;"> Add to Cart </a>
 </div>
         </div>
         {{/each}}
-
+ <!-- Modal -->
+  <div class="modal fade" id="completeModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Item Added to Cart</h4>
+        </div>
+        <div class="modal-body">
+          <p>You have placed <span class="simpleCart_items"></span> in your cart.
+           <br>Total: <span class="simpleCart_total"></span></p>
+           <a href="/checkout">
+           <button type="button" class="btn btn-default" id="checkout">Checkout</button></a>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal" id="close">Keep Shopping</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
     <!--<ul> {{#each dbCompleteBasket}}
         <li>
             <img src="{{image}}" alt="">
