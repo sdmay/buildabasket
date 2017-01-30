@@ -61,7 +61,7 @@
     <div class="jumbotron">
         <h2>A great selection of great gift baskets</h2>
         <p>Custom gift baskets start at $XX.XX</p><br>
-        <a class="btn btn-primary btn-lg" href="#" role="button">Buy one of ours</a>
+        <a class="btn btn-primary btn-lg" href="/complete" role="button">Buy one of ours</a>
         <a class="btn btn-primary btn-lg" href="#" role="button">Build your own!</a>
     </div>
     <div class="row">
@@ -125,6 +125,20 @@
     $("#submit").click(function(){
         console.log("CLICK")
         $("#myModal").modal("toggle");
+  
+        
+    });
+        $("#closeModal").click(function(){
+        console.log("CLICK")
+        
+        // $( ".billing" ).empty();
+        // $( ".shipping" ).empty();
+        $( ".total" ).empty();
+         $( ".simpleCart_total" ).empty();
+        $( ".simpleCart_quantity" ).empty();
+        simpleCart_total = 0;
+        simpleCart_quantity = 0;
+        
     });
 
     // CREATE USER
