@@ -6,7 +6,7 @@
             <a class="btn btn-primary btn-lg" href="#" role="button"></a>
             {{/each}}
         </div>--}}
-
+<div class="container">
 <div class="row">
     <div class="col-sm-12">
         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
@@ -20,17 +20,17 @@
 
                 
             <!-- Wrapper for slides -->
-            <div class="carousel-inner" role="listbox">
+            <div class="carousel-inner center" role="listbox">
         <div class="item active">
             <img src="http://images.huffingtonpost.com/2016-05-09-1462761733-5966723-chooseyourown-thumb.jpg" alt="...">
             </div>
                 {{!--carousel item--}}
             {{#each dbEmptyBasket}}
                 <div class="item">
-                    <img src="{{image}}" alt="" class="image">
+                    <img src="{{image}}" alt="" class="img-responsive center-block">
                     <p>{{basket_name}}</p>
                     <p>{{price}}</p>
-                    <a class="btn btn-primary btn-lg" href="#" role="button"></a>
+                    <a class="btn btn-primary btn-lg item_add" href="javascript:;">Select</a>
                 </div>
             {{/each}}
 
@@ -48,4 +48,5 @@
             </a>
         </div>
     </div>
+</div>
 </div>

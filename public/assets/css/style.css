@@ -14,7 +14,23 @@
 #front_droppable{
     z-index: 100;
     position: absolute;
+}
 
 .site-name {
     font-family: 'Arsenal', sans-serif;
+}
+
+div.c-wrapper{
+    width: 80%; /* for example */
+    margin: auto;
+}
+
+.carousel-inner > .item > img, 
+.carousel-inner > .item > a > img{
+width: 100%; /* use this, or not */
+margin: auto;
+}
+
+.center{
+    text-align: center
 }

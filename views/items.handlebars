@@ -1,11 +1,19 @@
-{{#each dbItem}}
-<div class="col-sm-3">
-            
-            <img src="{{image}}" alt="" class="image">
-            <p>{{item_name}}</p>
-            <p>{{description}}
-            <p>{{price}}</p>
-            <a class="btn btn-primary btn-lg" href="#" role="button"></a>
-           
-        </div>
-         {{/each}}
+<div class="container"> 
+ {{#each dbItem}}
+<ul>
+    <li class="simpleCart_shelfItem">
+        <h2 class="item_name"> {{item_name}} </h2>
+        <img src="{{image}}" alt="" class="image">
+        <!--<input type="text" value="1" class="item_Quantity">-->
+        <p>{{description}}</p>
+        <span class="item_price">${{price}}</span>
+        <a class="btn btn-primary btn-lg item_add" href="javascript:;"> Add to Cart </a></li>
+
+        <div class="simpleCart_items" >
+	</div>
+
+</ul>
+{{/each}}
+<span class="simpleCart_total"></span>
+<a class="btn btn-primary btn-lg" href="/checkout"> Checkout </a>
+</div>
