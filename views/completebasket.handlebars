@@ -1,5 +1,5 @@
 
-{{#each dbCompleteBasket}}
+<!--{{#each dbCompleteBasket}}
         <div class="col-sm-3">
             
             <img src="{{image}}" alt="" class="image">
@@ -8,6 +8,20 @@
             <p>${{price}}</p>
             <a class="btn btn-primary btn-lg" href="#" role="button"></a>
             
+        </div>
+        {{/each}}-->
+
+
+{{#each dbCompleteBasket}}
+        <div class="col-sm-3">
+<div class="simpleCart_shelfItem">
+    <h2 class="item_name"> {{basket_name}} </h2>
+    <img src="{{image}}" alt="" class="image">  
+    <!--<input type="text" value="1" class="item_Quantity">-->
+    <p>{{description}}</p>
+    <span class="item_price">${{price}}</span>
+    <a class="item_add" href="javascript:;"> Add to Cart </a>
+</div>
         </div>
         {{/each}}
 

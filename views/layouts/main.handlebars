@@ -48,7 +48,7 @@
                     <li><a href="/about">About</a></li>
                     <li><a href="/contact">Contact</a></li>
                     <li><a href="/login">Sign Up or Login</a></li>
-                    <li><a href="#"><i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></a></i>
+                    <li><a href="/checkout"><i class="fa fa-shopping-cart fa-2x" aria-hidden="true"><span class="simpleCart_total"></span> (<span class="simpleCart_quantity"></span>)</a></i>
                     </li>
 
                 </ul>
@@ -104,6 +104,23 @@
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> {{!--
     <script>$("#carousel-example-generic").carousel();</script>--}} {{!--Modal function, checkout.handlebars--}}
+    
+    
+    
+    
+    
+    <!--Shopping Cart begins here-->
+    <script src="../assets/js/simpleCart.js"></script>
+    <script>
+    simpleCart({
+        checkout: { 
+            type: "PayPal" , 
+            email: "you@yours.com" 
+        },
+        tax:        0.075
+    }); 
+</script>
+
     <script>
     $("#submit").click(function(){
         console.log("CLICK")
