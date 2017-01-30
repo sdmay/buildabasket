@@ -4,18 +4,18 @@
 (function (window, document) {
 	/*global HTMLElement */
 
-	var typeof_string			= typeof "",
-		typeof_undefined		= typeof undefined,
-		typeof_function			= typeof function () {},
-		typeof_object			= typeof {},
-		isTypeOf				= function (item, type) { return typeof item === type; },
-		isString				= function (item) { return isTypeOf(item, typeof_string); },
-		isUndefined				= function (item) { return isTypeOf(item, typeof_undefined); },
-		isFunction				= function (item) { return isTypeOf(item, typeof_function); },
+	var typeof_string = typeof "",
+		typeof_undefined = typeof undefined,
+		typeof_function = typeof function () { },
+		typeof_object = typeof {},
+		isTypeOf = function (item, type) { return typeof item === type; },
+		isString = function (item) { return isTypeOf(item, typeof_string); },
+		isUndefined = function (item) { return isTypeOf(item, typeof_undefined); },
+		isFunction = function (item) { return isTypeOf(item, typeof_function); },
 
-		isObject				= function (item) { return isTypeOf(item, typeof_object); },
+		isObject = function (item) { return isTypeOf(item, typeof_object); },
 		//Returns true if it is a DOM element
-		isElement				= function (o) {
+		isElement = function (o) {
 			return typeof HTMLElement === "object" ? o instanceof HTMLElement : typeof o === "object" && o.nodeType === 1 && typeof o.nodeName === "string";
 		},
 
@@ -25,30 +25,30 @@
 
 			// stealing this from selectivizr
 			var selectorEngines = {
-				"MooTools"							: "$$",
-				"Prototype"							: "$$",
-				"jQuery"							: "*"
+				"MooTools": "$$",
+				"Prototype": "$$",
+				"jQuery": "*"
 			},
 
 
 				// local variables for internal use
-				item_id					= 0,
-				item_id_namespace		= "SCI-",
-				sc_items				= {},
-				namespace				= space || "simpleCart",
-				selectorFunctions		= {},
-				eventFunctions			= {},
-				baseEvents				= {},
+				item_id = 0,
+				item_id_namespace = "SCI-",
+				sc_items = {},
+				namespace = space || "simpleCart",
+				selectorFunctions = {},
+				eventFunctions = {},
+				baseEvents = {},
 
 				// local references
-				localStorage			= window.localStorage,
-				console					= window.console || { msgs: [], log: function (msg) { console.msgs.push(msg); } },
+				localStorage = window.localStorage,
+				console = window.console || { msgs: [], log: function (msg) { console.msgs.push(msg); } },
 
 				// used in views 
-				_VALUE_		= 'value',
-				_TEXT_		= 'text',
-				_HTML_		= 'html',
-				_CLICK_		= 'click',
+				_VALUE_ = 'value',
+				_TEXT_ = 'text',
+				_HTML_ = 'html',
+				_CLICK_ = 'click',
 
 				// Currencies
 				currencies = {
@@ -72,17 +72,17 @@
 					"SEK": { code: "SEK", symbol: "SEK&nbsp;", name: "Swedish Krona" },
 					"CHF": { code: "CHF", symbol: "CHF&nbsp;", name: "Swiss Franc" },
 					"THB": { code: "THB", symbol: "&#3647;", name: "Thai Baht" },
-					"BTC": { code: "BTC", symbol: " BTC", name: "Bitcoin", accuracy: 4, after: true	}
+					"BTC": { code: "BTC", symbol: " BTC", name: "Bitcoin", accuracy: 4, after: true }
 				},
 
 				// default options
 				settings = {
-					checkout				: { type: "PayPal", email: "you@yours.com" },
-					currency				: "USD",
-					language				: "english-us",
+					checkout: { type: "PayPal", email: "you@yours.com" },
+					currency: "USD",
+					language: "english-us",
 
-					cartStyle				: "div",
-					cartColumns			: [
+					cartStyle: "div",
+					cartColumns: [
 						{ attr: "name", label: "Name" },
 						{ attr: "price", label: "Price", view: 'currency' },
 						{ view: "decrement", label: false },
@@ -92,18 +92,18 @@
 						{ view: "remove", text: "Remove", label: false }
 					],
 
-					excludeFromCheckout	: ['thumb'],
+					excludeFromCheckout: ['thumb'],
 
-					shippingFlatRate		: 0,
-					shippingQuantityRate	: 0,
-					shippingTotalRate		: 0,
-					shippingCustom		: null,
+					shippingFlatRate: 0,
+					shippingQuantityRate: 0,
+					shippingTotalRate: 0,
+					shippingCustom: null,
 
-					taxRate				: 0,
-					
-					taxShipping			: false,
+					taxRate: 0,
 
-					data				: {}
+					taxShipping: false,
+
+					data: {}
 
 				},
 
@@ -160,29 +160,29 @@
 
 				// this is where the magic happens, the add function
 				add: function (values, opt_quiet) {
-					var info		= values || {},
-						newItem		= new simpleCart.Item(info),
-						addItem 	= true,
+					var info = values || {},
+						newItem = new simpleCart.Item(info),
+						addItem = true,
 						// optionally supress event triggers
-						quiet 		= opt_quiet === true ? opt_quiet : false,
+						quiet = opt_quiet === true ? opt_quiet : false,
 						oldItem;
 
 					// trigger before add event
 					if (!quiet) {
-					  	addItem = simpleCart.trigger('beforeAdd', [newItem]);
-					
+						addItem = simpleCart.trigger('beforeAdd', [newItem]);
+
 						if (addItem === false) {
 							return false;
 						}
 					}
-					
+
 					// if the new item already exists, increment the value
 					oldItem = simpleCart.has(newItem);
 					if (oldItem) {
 						oldItem.increment(newItem.quantity());
 						newItem = oldItem;
 
-					// otherwise add the item
+						// otherwise add the item
 					} else {
 						sc_items[newItem.id()] = newItem;
 					}
@@ -250,33 +250,33 @@
 											match = false;
 										}
 
-									// less than
+										// less than
 									} else if (val.match(/</)) {
 										val = parseFloat(val.replace('<', ''));
 										if (!(item.get(attr) && parseFloat(item.get(attr)) < val)) {
 											match = false;
 										}
 
-									// greater than or equal to
+										// greater than or equal to
 									} else if (val.match(/>=/)) {
 										val = parseFloat(val.replace('>=', ''));
 										if (!(item.get(attr) && parseFloat(item.get(attr)) >= val)) {
 											match = false;
 										}
 
-									// greater than
+										// greater than
 									} else if (val.match(/>/)) {
 										val = parseFloat(val.replace('>', ''));
 										if (!(item.get(attr) && parseFloat(item.get(attr)) > val)) {
 											match = false;
 										}
 
-									// equal to
+										// equal to
 									} else if (!(item.get(attr) && item.get(attr) === val)) {
 										match = false;
 									}
 
-								// equal to non string
+									// equal to non string
 								} else if (!(item.get(attr) && item.get(attr) === val)) {
 									match = false;
 								}
@@ -445,7 +445,7 @@
 					if (!items) {
 						return;
 					}
-					
+
 					// we wrap this in a try statement so we can catch 
 					// any json parsing errors. no more stick and we
 					// have a playing card pluckin the spokes now...
@@ -454,8 +454,8 @@
 						simpleCart.each(JSON.parse(items), function (item) {
 							simpleCart.add(item, true);
 						});
-					} catch (e){
-						simpleCart.error( "Error Loading data: " + e );
+					} catch (e) {
+						simpleCart.error("Error Loading data: " + e);
 					}
 
 
@@ -470,12 +470,12 @@
 						if (simpleCart.isReady) {
 							fn.call(simpleCart);
 
-						// bind if not ready
+							// bind if not ready
 						} else {
 							simpleCart.bind('ready', fn);
 						}
 
-					// trigger ready event
+						// trigger ready event
 					} else if (isUndefined(fn) && !simpleCart.isReady) {
 						simpleCart.trigger('ready');
 						simpleCart.isReady = true;
@@ -491,7 +491,7 @@
 					} else if (isObject(message) && isString(message.message)) {
 						msg = message.message;
 					}
-					try { console.log("simpleCart(js) Error: " + msg); } catch (e) {}
+					try { console.log("simpleCart(js) Error: " + msg); } catch (e) { }
 					simpleCart.trigger('error', [message]);
 				}
 			});
@@ -506,7 +506,7 @@
 				tax: function () {
 					var totalToTax = settings.taxShipping ? simpleCart.total() + simpleCart.shipping() : simpleCart.total(),
 						cost = simpleCart.taxRate() * totalToTax;
-					
+
 					simpleCart.each(function (item) {
 						if (item.get('tax')) {
 							cost += item.get('tax');
@@ -516,7 +516,7 @@
 					});
 					return parseFloat(cost);
 				},
-				
+
 				taxRate: function () {
 					return settings.taxRate || 0;
 				},
@@ -532,8 +532,8 @@
 					}
 
 					var cost = settings.shippingQuantityRate * simpleCart.quantity() +
-							settings.shippingTotalRate * simpleCart.total() +
-							settings.shippingFlatRate;
+						settings.shippingTotalRate * simpleCart.total() +
+						settings.shippingFlatRate;
 
 					if (isFunction(settings.shippingCustom)) {
 						cost += settings.shippingCustom.call(simpleCart);
@@ -590,12 +590,12 @@
 			function cartColumn(opts) {
 				var options = opts || {};
 				return simpleCart.extend({
-					attr			: "",
-					label			: "",
-					view			: "attr",
-					text			: "",
-					className		: "",
-					hide			: false
+					attr: "",
+					label: "",
+					view: "attr",
+					text: "",
+					className: "",
+					hide: false
 				}, options);
 			}
 
@@ -635,9 +635,9 @@
 
 					// create header
 					for (x = 0, xlen = settings.cartColumns.length; x < xlen; x += 1) {
-						column	= cartColumn(settings.cartColumns[x]);
-						klass	=  "item-" + (column.attr || column.view || column.label || column.text || "cell") + " " + column.className;
-						label	= column.label || "";
+						column = cartColumn(settings.cartColumns[x]);
+						klass = "item-" + (column.attr || column.view || column.label || column.text || "cell") + " " + column.className;
+						label = column.label || "";
 
 						// append the header cell
 						header_container.append(
@@ -656,8 +656,8 @@
 				// generate a cart row from an item
 				createCartRow: function (item, y, TR, TD, container) {
 					var row = simpleCart.$create(TR)
-										.addClass('itemRow row-' + y + " " + (y % 2 ? "even" : "odd"))
-										.attr('id', "cartItem_" + item.id()),
+						.addClass('itemRow row-' + y + " " + (y % 2 ? "even" : "odd"))
+						.attr('id', "cartItem_" + item.id()),
 						j,
 						jlen,
 						column,
@@ -669,10 +669,10 @@
 
 					// cycle through the columns to create each cell for the item
 					for (j = 0, jlen = settings.cartColumns.length; j < jlen; j += 1) {
-						column	= cartColumn(settings.cartColumns[j]);
-						klass	= "item-" + (column.attr || (isString(column.view) ? column.view : column.label || column.text || "cell")) + " " + column.className;
+						column = cartColumn(settings.cartColumns[j]);
+						klass = "item-" + (column.attr || (isString(column.view) ? column.view : column.label || column.text || "cell")) + " " + column.className;
 						content = cartCellView(item, column);
-						cell	= simpleCart.$create(TD).addClass(klass).html(content);
+						cell = simpleCart.$create(TD).addClass(klass).html(content);
 
 						row.append(cell);
 					}
@@ -708,7 +708,7 @@
 
 					// check to make sure price is valid
 					if (isString(_data.price)) {
-					   // trying to remove all chars that aren't numbers or '.'
+						// trying to remove all chars that aren't numbers or '.'
 						_data.price = parseFloat(_data.price.replace(simpleCart.currency().decimal, ".").replace(/[^0-9\.]+/ig, ""));
 
 					}
@@ -742,12 +742,12 @@
 					}
 
 					// return the value in order of the data object and then the prototype
-					return isFunction(_data[name])	? _data[name].call(me) :
-							!isUndefined(_data[name]) ? _data[name] :
+					return isFunction(_data[name]) ? _data[name].call(me) :
+						!isUndefined(_data[name]) ? _data[name] :
 
-							isFunction(me[name]) && usePrototypes		? me[name].call(me) :
-							!isUndefined(me[name]) && usePrototypes	? me[name] :
-							_data[name];
+							isFunction(me[name]) && usePrototypes ? me[name].call(me) :
+								!isUndefined(me[name]) && usePrototypes ? me[name] :
+									_data[name];
 				};
 				me.set = function (name, value) {
 					if (!isUndefined(name)) {
@@ -759,7 +759,7 @@
 					return me;
 				};
 				me.equals = function (item) {
-					for( var label in _data ){
+					for (var label in _data) {
 						if (Object.prototype.hasOwnProperty.call(_data, label)) {
 							if (label !== 'quantity' && label !== 'id') {
 								if (item.get(label) !== _data[label]) {
@@ -772,7 +772,7 @@
 				};
 				me.options = function () {
 					var data = {};
-					simpleCart.each(_data,function (val, x, label) {
+					simpleCart.each(_data, function (val, x, label) {
 						var add = true;
 						simpleCart.each(me.reservedFields(), function (field) {
 							if (field === label) {
@@ -813,11 +813,11 @@
 				},
 				remove: function (skipUpdate) {
 					var removeItemBool = simpleCart.trigger("beforeRemove", [sc_items[this.id()]]);
-					if (removeItemBool === false ) {
+					if (removeItemBool === false) {
 						return false;
 					}
 					delete sc_items[this.id()];
-					if (!skipUpdate) { 
+					if (!skipUpdate) {
 						simpleCart.update();
 					}
 					return null;
@@ -852,14 +852,14 @@
 				},
 				price: function (val) {
 					return isUndefined(val) ?
-							parseFloat((this.get("price",true).toString()).replace(simpleCart.currency().symbol,"").replace(simpleCart.currency().delimiter,"") || 1) :
-							this.set("price", parseFloat((val).toString().replace(simpleCart.currency().symbol,"").replace(simpleCart.currency().delimiter,"")));
+						parseFloat((this.get("price", true).toString()).replace(simpleCart.currency().symbol, "").replace(simpleCart.currency().delimiter, "") || 1) :
+						this.set("price", parseFloat((val).toString().replace(simpleCart.currency().symbol, "").replace(simpleCart.currency().delimiter, "")));
 				},
 				id: function () {
-					return this.get('id',false);
+					return this.get('id', false);
 				},
-				total:function () {
-					return this.quantity()*this.price();
+				total: function () {
+					return this.quantity() * this.price();
 				}
 
 			};
@@ -874,18 +874,18 @@
 			simpleCart.extend({
 				checkout: function () {
 					if (settings.checkout.type.toLowerCase() === 'custom' && isFunction(settings.checkout.fn)) {
-						settings.checkout.fn.call(simpleCart,settings.checkout);
+						settings.checkout.fn.call(simpleCart, settings.checkout);
 					} else if (isFunction(simpleCart.checkout[settings.checkout.type])) {
-						var checkoutData = simpleCart.checkout[settings.checkout.type].call(simpleCart,settings.checkout);
-						
+						var checkoutData = simpleCart.checkout[settings.checkout.type].call(simpleCart, settings.checkout);
+
 						// if the checkout method returns data, try to send the form
-						if( checkoutData.data && checkoutData.action && checkoutData.method ){
+						if (checkoutData.data && checkoutData.action && checkoutData.method) {
 							// if no one has any objections, send the checkout form
-							if( false !== simpleCart.trigger('beforeCheckout', [checkoutData.data]) ){
-								simpleCart.generateAndSendForm( checkoutData );
+							if (false !== simpleCart.trigger('beforeCheckout', [checkoutData.data])) {
+								simpleCart.generateAndSendForm(checkoutData);
 							}
 						}
-						
+
 					} else {
 						simpleCart.error("No Valid Checkout Method Specified");
 					}
@@ -900,7 +900,7 @@
 					form.attr('method', opts.method);
 					simpleCart.each(opts.data, function (val, x, name) {
 						form.append(
-							simpleCart.$create("input").attr("type","hidden").attr("name",name).val(val)
+							simpleCart.$create("input").attr("type", "hidden").attr("name", name).val(val)
 						);
 					});
 					simpleCart.$("body").append(form);
@@ -918,15 +918,15 @@
 
 					// build basic form options
 					var data = {
-							  cmd			: "_cart"
-							, upload		: "1"
-							, currency_code : simpleCart.currency().code
-							, business		: opts.email
-							, rm			: opts.method === "GET" ? "0" : "2"
-							, tax_cart		: (simpleCart.tax()*1).toFixed(2)
-							, handling_cart : (simpleCart.shipping()*1).toFixed(2)
-							, charset		: "utf-8"
-						},
+						cmd: "_cart"
+						, upload: "1"
+						, currency_code: simpleCart.currency().code
+						, business: opts.email
+						, rm: opts.method === "GET" ? "0" : "2"
+						, tax_cart: (simpleCart.tax() * 1).toFixed(2)
+						, handling_cart: (simpleCart.shipping() * 1).toFixed(2)
+						, charset: "utf-8"
+					},
 						action = opts.sandbox ? "https://www.sandbox.paypal.com/cgi-bin/webscr" : "https://www.paypal.com/cgi-bin/webscr",
 						method = opts.method === "GET" ? "GET" : "POST";
 
@@ -944,48 +944,48 @@
 
 
 					// add all the items to the form data
-					simpleCart.each(function (item,x) {
-						var counter = x+1,
+					simpleCart.each(function (item, x) {
+						var counter = x + 1,
 							item_options = item.options(),
 							optionCount = 0,
 							send;
-	
+
 						// basic item data
 						data["item_name_" + counter] = item.get("name");
 						data["quantity_" + counter] = item.quantity();
-						data["amount_" + counter] = (item.price()*1).toFixed(2);
+						data["amount_" + counter] = (item.price() * 1).toFixed(2);
 						data["item_number_" + counter] = item.get("item_number") || counter;
 
 
 						// add the options
-						simpleCart.each(item_options, function (val,k,attr) {
+						simpleCart.each(item_options, function (val, k, attr) {
 							// paypal limits us to 10 options
 							if (k < 10) {
-		
+
 								// check to see if we need to exclude this from checkout
 								send = true;
 								simpleCart.each(settings.excludeFromCheckout, function (field_name) {
 									if (field_name === attr) { send = false; }
 								});
 								if (send) {
-										optionCount += 1;
-										data["on" + k + "_" + counter] = attr;
-										data["os" + k + "_" + counter] = val;
+									optionCount += 1;
+									data["on" + k + "_" + counter] = attr;
+									data["os" + k + "_" + counter] = val;
 								}
-	
+
 							}
 						});
 
 						// options count
-						data["option_index_"+ x] = Math.min(10, optionCount);
+						data["option_index_" + x] = Math.min(10, optionCount);
 					});
 
 
 					// return the data for the checkout form
 					return {
-						  action	: action
-						, method	: method
-						, data		: data
+						action: action
+						, method: method
+						, data: data
 					};
 
 				},
@@ -1004,29 +1004,29 @@
 
 					// build basic form options
 					var data = {
-							// TODO: better shipping support for this google
-							  ship_method_name_1	: "Shipping"
-							, ship_method_price_1	: simpleCart.shipping()
-							, ship_method_currency_1: simpleCart.currency().code
-							, _charset_				: ''
-						},
+						// TODO: better shipping support for this google
+						ship_method_name_1: "Shipping"
+						, ship_method_price_1: simpleCart.shipping()
+						, ship_method_currency_1: simpleCart.currency().code
+						, _charset_: ''
+					},
 						action = "https://checkout.google.com/api/checkout/v2/checkoutForm/Merchant/" + opts.merchantID,
 						method = opts.method === "GET" ? "GET" : "POST";
 
 
 					// add items to data
-					simpleCart.each(function (item,x) {
-						var counter = x+1,
+					simpleCart.each(function (item, x) {
+						var counter = x + 1,
 							options_list = [],
 							send;
-						data['item_name_' + counter]		= item.get('name');
-						data['item_quantity_' + counter]	= item.quantity();
-						data['item_price_' + counter]		= item.price();
-						data['item_currency_ ' + counter]	= simpleCart.currency().code;
-						data['item_tax_rate' + counter]		= item.get('taxRate') || simpleCart.taxRate();
+						data['item_name_' + counter] = item.get('name');
+						data['item_quantity_' + counter] = item.quantity();
+						data['item_price_' + counter] = item.price();
+						data['item_currency_ ' + counter] = simpleCart.currency().code;
+						data['item_tax_rate' + counter] = item.get('taxRate') || simpleCart.taxRate();
 
 						// create array of extra options
-						simpleCart.each(item.options(), function (val,x,attr) {
+						simpleCart.each(item.options(), function (val, x, attr) {
 							// check to see if we need to exclude this from checkout
 							send = true;
 							simpleCart.each(settings.excludeFromCheckout, function (field_name) {
@@ -1043,9 +1043,9 @@
 
 					// return the data for the checkout form
 					return {
-						  action	: action
-						, method	: method
-						, data		: data
+						action: action
+						, method: method
+						, data: data
 					};
 
 
@@ -1067,27 +1067,27 @@
 
 					// build basic form options
 					var data = {
-							  aws_access_key_id:	opts.aws_access_key_id
-							, merchant_signature:	opts.merchant_signature
-							, currency_code:		simpleCart.currency().code
-							, tax_rate:				simpleCart.taxRate()
-							, weight_unit:			opts.weight_unit || 'lb'
-						},
+						aws_access_key_id: opts.aws_access_key_id
+						, merchant_signature: opts.merchant_signature
+						, currency_code: simpleCart.currency().code
+						, tax_rate: simpleCart.taxRate()
+						, weight_unit: opts.weight_unit || 'lb'
+					},
 						action = "https://payments" + (opts.sandbox ? "-sandbox" : "") + ".amazon.com/checkout/" + opts.merchant_id,
 						method = opts.method === "GET" ? "GET" : "POST";
 
 
 					// add items to data
-					simpleCart.each(function (item,x) {
-						var counter = x+1,
+					simpleCart.each(function (item, x) {
+						var counter = x + 1,
 							options_list = [];
-						data['item_title_' + counter]			= item.get('name');
-						data['item_quantity_' + counter]		= item.quantity();
-						data['item_price_' + counter]			= item.price();
-						data['item_sku_ ' + counter]			= item.get('sku') || item.id();
-						data['item_merchant_id_' + counter]	= opts.merchant_id;
+						data['item_title_' + counter] = item.get('name');
+						data['item_quantity_' + counter] = item.quantity();
+						data['item_price_' + counter] = item.price();
+						data['item_sku_ ' + counter] = item.get('sku') || item.id();
+						data['item_merchant_id_' + counter] = opts.merchant_id;
 						if (item.get('weight')) {
-							data['item_weight_' + counter]		= item.get('weight');
+							data['item_weight_' + counter] = item.get('weight');
 						}
 						if (settings.shippingQuantityRate) {
 							data['shipping_method_price_per_unit_rate_' + counter] = settings.shippingQuantityRate;
@@ -1095,7 +1095,7 @@
 
 
 						// create array of extra options
-						simpleCart.each(item.options(), function (val,x,attr) {
+						simpleCart.each(item.options(), function (val, x, attr) {
 							// check to see if we need to exclude this from checkout
 							var send = true;
 							simpleCart.each(settings.excludeFromCheckout, function (field_name) {
@@ -1112,9 +1112,9 @@
 
 					// return the data for the checkout form
 					return {
-						  action	: action
-						, method	: method
-						, data		: data
+						action: action
+						, method: method
+						, data: data
 					};
 
 				},
@@ -1128,27 +1128,27 @@
 
 					// build basic form options
 					var data = {
-							  currency	: simpleCart.currency().code
-							, shipping	: simpleCart.shipping()
-							, tax		: simpleCart.tax()
-							, taxRate	: simpleCart.taxRate()
-							, itemCount : simpleCart.find({}).length
-						},
+						currency: simpleCart.currency().code
+						, shipping: simpleCart.shipping()
+						, tax: simpleCart.tax()
+						, taxRate: simpleCart.taxRate()
+						, itemCount: simpleCart.find({}).length
+					},
 						action = opts.url,
 						method = opts.method === "GET" ? "GET" : "POST";
 
 
 					// add items to data
-					simpleCart.each(function (item,x) {
-						var counter = x+1,
+					simpleCart.each(function (item, x) {
+						var counter = x + 1,
 							options_list = [],
 							send;
-						data['item_name_' + counter]		= item.get('name');
-						data['item_quantity_' + counter]	= item.quantity();
-						data['item_price_' + counter]		= item.price();
+						data['item_name_' + counter] = item.get('name');
+						data['item_quantity_' + counter] = item.quantity();
+						data['item_price_' + counter] = item.price();
 
 						// create array of extra options
-						simpleCart.each(item.options(), function (val,x,attr) {
+						simpleCart.each(item.options(), function (val, x, attr) {
 							// check to see if we need to exclude this from checkout
 							send = true;
 							simpleCart.each(settings.excludeFromCheckout, function (field_name) {
@@ -1173,14 +1173,14 @@
 					}
 
 					if (opts.extra_data) {
-						data = simpleCart.extend(data,opts.extra_data);
+						data = simpleCart.extend(data, opts.extra_data);
 					}
 
 					// return the data for the checkout form
 					return {
-						  action	: action
-						, method	: method
-						, data		: data
+						action: action
+						, method: method
+						, data: data
 					};
 				}
 
@@ -1202,12 +1202,12 @@
 					if (!this._events) {
 						this._events = {};
 					}
-					
+
 					// split by spaces to allow for multiple event bindings at once
 					var eventNameList = name.split(/ +/);
-					
+
 					// iterate through and bind each event
-					simpleCart.each( eventNameList , function( eventName ){
+					simpleCart.each(eventNameList, function (eventName) {
 						if (this._events[eventName] === true) {
 							callback.apply(this);
 						} else if (!isUndefined(this._events[eventName])) {
@@ -1217,10 +1217,10 @@
 						}
 					});
 
-					
+
 					return this;
 				},
-				
+
 				// trigger event
 				trigger: function (name, options) {
 					var returnval = true,
@@ -1250,19 +1250,19 @@
 
 			// base simpleCart events in options
 			baseEvents = {
-				  beforeAdd				: null
-				, afterAdd				: null
-				, load					: null
-				, beforeSave			: null
-				, afterSave				: null
-				, update				: null
-				, ready					: null
-				, checkoutSuccess		: null
-				, checkoutFail			: null
-				, beforeCheckout		: null
-				, beforeRemove			: null
+				beforeAdd: null
+				, afterAdd: null
+				, load: null
+				, beforeSave: null
+				, afterSave: null
+				, update: null
+				, ready: null
+				, checkoutSuccess: null
+				, checkoutFail: null
+				, beforeCheckout: null
+				, beforeRemove: null
 			};
-			
+
 			// extend with base events
 			simpleCart(baseEvents);
 
@@ -1274,42 +1274,46 @@
 					}
 				});
 			});
-
+			
+			simpleCart.bind("afterCreate", function () {
+				$cart_table = $(".simpleCart_items table")
+				$cart_table.addClass("table").addClass("table-hover")
+			});
 			/*******************************************************************
 			 *	FORMATTING FUNCTIONS
 			 *******************************************************************/
 			simpleCart.extend({
-				toCurrency: function (number,opts) {
+				toCurrency: function (number, opts) {
 					var num = parseFloat(number),
 						opt_input = opts || {},
 						_opts = simpleCart.extend(simpleCart.extend({
-							  symbol:		"$"
-							, decimal:		"."
-							, delimiter:	","
-							, accuracy:		2
+							symbol: "$"
+							, decimal: "."
+							, delimiter: ","
+							, accuracy: 2
 							, after: false
 						}, simpleCart.currency()), opt_input),
 
 						numParts = num.toFixed(_opts.accuracy).split("."),
 						dec = numParts[1],
 						ints = numParts[0];
-			
+
 					ints = simpleCart.chunk(ints.reverse(), 3).join(_opts.delimiter.reverse()).reverse();
 
-					return	(!_opts.after ? _opts.symbol : "") +
-							ints +
-							(dec ? _opts.decimal + dec : "") +
-							(_opts.after ? _opts.symbol : "");
-	
+					return (!_opts.after ? _opts.symbol : "") +
+						ints +
+						(dec ? _opts.decimal + dec : "") +
+						(_opts.after ? _opts.symbol : "");
+
 				},
 
 
 				// break a string in blocks of size n
 				chunk: function (str, n) {
-					if (typeof n==='undefined') {
-						n=2;
+					if (typeof n === 'undefined') {
+						n = 2;
 					}
-					var result = str.match(new RegExp('.{1,' + n + '}','g'));
+					var result = str.match(new RegExp('.{1,' + n + '}', 'g'));
 					return result || [];
 				}
 
@@ -1345,7 +1349,7 @@
 				// bind outlets to function
 				bindOutlets: function (outlets) {
 					simpleCart.each(outlets, function (callback, x, selector) {
-						
+
 						simpleCart.bind('update', function () {
 							simpleCart.setOutlet("." + namespace + "_" + selector, callback);
 						});
@@ -1373,7 +1377,7 @@
 				setInput: function (selector, event, func) {
 					simpleCart.$(selector).live(event, func);
 				}
-			});		
+			});
 
 
 			// class for wrapping DOM selector shit
@@ -1385,7 +1389,7 @@
 
 			simpleCart.extend(selectorFunctions, {
 
-				"MooTools"		: {
+				"MooTools": {
 					text: function (text) {
 						return this.attr(_TEXT_, text);
 					},
@@ -1399,7 +1403,7 @@
 						if (isUndefined(val)) {
 							return this.el[0] && this.el[0].get(attr);
 						}
-						
+
 						this.el.set(attr, val);
 						return this;
 					},
@@ -1421,8 +1425,8 @@
 					},
 					each: function (callback) {
 						if (isFunction(callback)) {
-							simpleCart.each(this.el, function( e, i, c) {
-								callback.call( i, i, e, c );
+							simpleCart.each(this.el, function (e, i, c) {
+								callback.call(i, i, e, c);
 							});
 						}
 						return this;
@@ -1431,7 +1435,7 @@
 						if (isFunction(callback)) {
 							this.each(function (e) {
 								e.addEvent(_CLICK_, function (ev) {
-									callback.call(e,ev);
+									callback.call(e, ev);
 								});
 							});
 						} else if (isUndefined(callback)) {
@@ -1440,7 +1444,7 @@
 
 						return this;
 					},
-					live: function (	event,callback) {
+					live: function (event, callback) {
 						var selector = this.selector;
 						if (isFunction(callback)) {
 							simpleCart.$("body").el.addEvent(event + ":relay(" + selector + ")", function (e, el) {
@@ -1466,7 +1470,7 @@
 					tag: function () {
 						return this.el[0].tagName;
 					},
-					submit: function (){
+					submit: function () {
 						this.el[0].submit();
 						return this;
 					},
@@ -1477,12 +1481,12 @@
 
 				},
 
-				"Prototype"		: {
+				"Prototype": {
 					text: function (text) {
 						if (isUndefined(text)) {
 							return this.el[0].innerHTML;
 						}
-						this.each(function (i,e) {
+						this.each(function (i, e) {
 							$(e).update(text);
 						});
 						return this;
@@ -1497,15 +1501,15 @@
 						if (isUndefined(val)) {
 							return this.el[0].readAttribute(attr);
 						}
-						this.each(function (i,e) {
+						this.each(function (i, e) {
 							$(e).writeAttribute(attr, val);
 						});
 						return this;
 					},
 					append: function (item) {
-						this.each(function (i,e) {
+						this.each(function (i, e) {
 							if (item.el) {
-								item.each(function (i2,e2) {
+								item.each(function (i2, e2) {
 									$(e).appendChild(e2);
 								});
 							} else if (isElement(item)) {
@@ -1534,8 +1538,8 @@
 					},
 					each: function (callback) {
 						if (isFunction(callback)) {
-							simpleCart.each(this.el, function( e, i, c) {
-								callback.call( i, i, e, c );
+							simpleCart.each(this.el, function (e, i, c) {
+								callback.call(i, i, e, c);
 							});
 						}
 						return this;
@@ -1544,7 +1548,7 @@
 						if (isFunction(callback)) {
 							this.each(function (i, e) {
 								$(e).observe(_CLICK_, function (ev) {
-									callback.call(e,ev);
+									callback.call(e, ev);
 								});
 							});
 						} else if (isUndefined(callback)) {
@@ -1554,7 +1558,7 @@
 						}
 						return this;
 					},
-					live: function (event,callback) {
+					live: function (event, callback) {
 						if (isFunction(callback)) {
 							var selector = this.selector;
 							document.observe(event, function (e, el) {
@@ -1579,7 +1583,7 @@
 					tag: function () {
 						return this.el.tagName;
 					},
-					submit: function() {
+					submit: function () {
 						this.el[0].submit();
 					},
 
@@ -1600,7 +1604,7 @@
 						if (isUndefined(val)) {
 							return this.el[action]();
 						}
-						
+
 						this.el[action](val);
 						return this;
 					},
@@ -1662,7 +1666,7 @@
 					descendants: function () {
 						return simpleCart.$(this.el.find("*"));
 					},
-					submit: function() {
+					submit: function () {
 						return this.el.submit();
 					},
 
@@ -1687,6 +1691,7 @@
 					}
 					, items: function (selector) {
 						simpleCart.writeCart(selector);
+						simpleCart.trigger("afterCreate");
 					}
 					, tax: function () {
 						return simpleCart.toCurrency(simpleCart.tax());
@@ -1702,26 +1707,30 @@
 					}
 				});
 				simpleCart.bindInputs([
-					{	  selector: 'checkout'
+					{
+						selector: 'checkout'
 						, event: 'click'
 						, callback: function () {
 							simpleCart.checkout();
 						}
 					}
-					, {	  selector: 'empty'
+					, {
+						selector: 'empty'
 						, event: 'click'
 						, callback: function () {
 							simpleCart.empty();
 						}
 					}
-					, {	  selector: 'increment'
+					, {
+						selector: 'increment'
 						, event: 'click'
 						, callback: function () {
 							simpleCart.find(simpleCart.$(this).closest('.itemRow').attr('id').split("_")[1]).increment();
 							simpleCart.update();
 						}
 					}
-					, {	  selector: 'decrement'
+					, {
+						selector: 'decrement'
 						, event: 'click'
 						, callback: function () {
 							simpleCart.find(simpleCart.$(this).closest('.itemRow').attr('id').split("_")[1]).decrement();
@@ -1729,7 +1738,8 @@
 						}
 					}
 					/* remove from cart */
-					, {	  selector: 'remove'
+					, {
+						selector: 'remove'
 						, event: 'click'
 						, callback: function () {
 							simpleCart.find(simpleCart.$(this).closest('.itemRow').attr('id').split("_")[1]).remove();
@@ -1737,7 +1747,8 @@
 					}
 
 					/* cart inputs */
-					, {	  selector: 'input'
+					, {
+						selector: 'input'
 						, event: 'change'
 						, callback: function () {
 							var $input = simpleCart.$(this),
@@ -1746,7 +1757,7 @@
 							simpleCart.each(classList, function (klass) {
 								if (klass.match(/item-.+/i)) {
 									var field = klass.split("-")[1];
-									simpleCart.find($parent.closest('.itemRow').attr('id').split("_")[1]).set(field,$input.val());
+									simpleCart.find($parent.closest('.itemRow').attr('id').split("_")[1]).set(field, $input.val());
 									simpleCart.update();
 									return;
 								}
@@ -1755,13 +1766,14 @@
 					}
 
 					/* here is our shelfItem add to cart button listener */
-					, { selector: 'shelfItem .item_add'
+					, {
+						selector: 'shelfItem .item_add'
 						, event: 'click'
 						, callback: function () {
 							var $button = simpleCart.$(this),
 								fields = {};
 
-							$button.closest("." + namespace + "_shelfItem").descendants().each(function (x,item) {
+							$button.closest("." + namespace + "_shelfItem").descendants().each(function (x, item) {
 								var $item = simpleCart.$(item);
 
 								// check to see if the class matches the item_[fieldname] pattern
@@ -1779,14 +1791,14 @@
 										if (klass.match(/item_.+/)) {
 											attr = klass.split("_")[1];
 											val = "";
-											switch($item.tag().toLowerCase()) {
+											switch ($item.tag().toLowerCase()) {
 												case "input":
 												case "textarea":
 												case "select":
 													type = $item.attr("type");
 													if (!type || ((type.toLowerCase() === "checkbox" || type.toLowerCase() === "radio") && $item.attr("checked")) || type.toLowerCase() === "text" || type.toLowerCase() === "number") {
 														val = $item.val();
-													}				
+													}
 													break;
 												case "img":
 													val = $item.attr('src');
@@ -1797,7 +1809,7 @@
 											}
 
 											if (val !== null && val !== "") {
-												fields[attr.toLowerCase()] = fields[attr.toLowerCase()] ? fields[attr.toLowerCase()] + ", " +  val : val;
+												fields[attr.toLowerCase()] = fields[attr.toLowerCase()] ? fields[attr.toLowerCase()] + ", " + val : val;
 											}
 										}
 									});
@@ -1852,9 +1864,9 @@
 				// and execute any waiting functions
 				simpleCart.init();
 			}
-			
+
 			// bind ready event used from jquery
-			function sc_BindReady () {
+			function sc_BindReady() {
 
 				// Catch cases where $(document).ready() is called after the
 				// browser event has already occurred.
@@ -1871,7 +1883,7 @@
 					// A fallback to window.onload, that will always work
 					window.addEventListener("load", simpleCart.init, false);
 
-				// If IE event model is used
+					// If IE event model is used
 				} else if (document.attachEvent) {
 					// ensure firing before onload,
 					// maybe late but safe also for iframes
@@ -1886,7 +1898,7 @@
 
 					try {
 						toplevel = window.frameElement === null;
-					} catch (e) {}
+					} catch (e) { }
 
 					if (document.documentElement.doScroll && toplevel) {
 						doScrollCheck();
@@ -1903,19 +1915,39 @@
 
 	window.simpleCart = generateSimpleCart();
 
-}(window, document));
+} (window, document));
 
 /************ JSON *************/
-var JSON;JSON||(JSON={});
-(function () {function k(a) {return a<10?"0"+a:a}function o(a) {p.lastIndex=0;return p.test(a)?'"'+a.replace(p,function (a) {var c=r[a];return typeof c==="string"?c:"\\u"+("0000"+a.charCodeAt(0).toString(16)).slice(-4)})+'"':'"'+a+'"'}function l(a,j) {var c,d,h,m,g=e,f,b=j[a];b&&typeof b==="object"&&typeof b.toJSON==="function"&&(b=b.toJSON(a));typeof i==="function"&&(b=i.call(j,a,b));switch(typeof b) {case "string":return o(b);case "number":return isFinite(b)?String(b):"null";case "boolean":case "null":return String(b);case "object":if (!b)return"null";
-e += n;f=[];if (Object.prototype.toString.apply(b)==="[object Array]") {m=b.length;for (c=0;c<m;c += 1)f[c]=l(c,b)||"null";h=f.length===0?"[]":e?"[\n"+e+f.join(",\n"+e)+"\n"+g+"]":"["+f.join(",")+"]";e=g;return h}if (i&&typeof i==="object") {m=i.length;for (c=0;c<m;c += 1)typeof i[c]==="string"&&(d=i[c],(h=l(d,b))&&f.push(o(d)+(e?": ":":")+h))}else for (d in b)Object.prototype.hasOwnProperty.call(b,d)&&(h=l(d,b))&&f.push(o(d)+(e?": ":":")+h);h=f.length===0?"{}":e?"{\n"+e+f.join(",\n"+e)+"\n"+g+"}":"{"+f.join(",")+
-"}";e=g;return h}}if (typeof Date.prototype.toJSON!=="function")Date.prototype.toJSON=function () {return isFinite(this.valueOf())?this.getUTCFullYear()+"-"+k(this.getUTCMonth()+1)+"-"+k(this.getUTCDate())+"T"+k(this.getUTCHours())+":"+k(this.getUTCMinutes())+":"+k(this.getUTCSeconds())+"Z":null},String.prototype.toJSON=Number.prototype.toJSON=Boolean.prototype.toJSON=function () {return this.valueOf()};var q=/[\u0000\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g,
-p=/[\\\"\x00-\x1f\x7f-\x9f\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g,e,n,r={"\u0008":"\\b","\t":"\\t","\n":"\\n","\u000c":"\\f","\r":"\\r",'"':'\\"',"\\":"\\\\"},i;if (typeof JSON.stringify!=="function")JSON.stringify=function (a,j,c) {var d;n=e="";if (typeof c==="number")for (d=0;d<c;d += 1)n += " ";else typeof c==="string"&&(n=c);if ((i=j)&&typeof j!=="function"&&(typeof j!=="object"||typeof j.length!=="number"))throw Error("JSON.stringify");return l("",
-{"":a})};if (typeof JSON.parse!=="function")JSON.parse=function (a,e) {function c(a,d) {var g,f,b=a[d];if (b&&typeof b==="object")for (g in b)Object.prototype.hasOwnProperty.call(b,g)&&(f=c(b,g),f!==void 0?b[g]=f:delete b[g]);return e.call(a,d,b)}var d,a=String(a);q.lastIndex=0;q.test(a)&&(a=a.replace(q,function (a) {return"\\u"+("0000"+a.charCodeAt(0).toString(16)).slice(-4)}));if (/^[\],:{}\s]*$/.test(a.replace(/\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g,"@").replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g,
-"]").replace(/(?:^|:|,)(?:\s*\[)+/g,"")))return d=eval("("+a+")"),typeof e==="function"?c({"":d},""):d;throw new SyntaxError("JSON.parse");}})();
+var JSON; JSON || (JSON = {});
+(function () {
+	function k(a) { return a < 10 ? "0" + a : a } function o(a) { p.lastIndex = 0; return p.test(a) ? '"' + a.replace(p, function (a) { var c = r[a]; return typeof c === "string" ? c : "\\u" + ("0000" + a.charCodeAt(0).toString(16)).slice(-4) }) + '"' : '"' + a + '"' } function l(a, j) {
+		var c, d, h, m, g = e, f, b = j[a]; b && typeof b === "object" && typeof b.toJSON === "function" && (b = b.toJSON(a)); typeof i === "function" && (b = i.call(j, a, b)); switch (typeof b) {
+			case "string": return o(b); case "number": return isFinite(b) ? String(b) : "null"; case "boolean": case "null": return String(b); case "object": if (!b) return "null";
+				e += n; f = []; if (Object.prototype.toString.apply(b) === "[object Array]") { m = b.length; for (c = 0; c < m; c += 1)f[c] = l(c, b) || "null"; h = f.length === 0 ? "[]" : e ? "[\n" + e + f.join(",\n" + e) + "\n" + g + "]" : "[" + f.join(",") + "]"; e = g; return h } if (i && typeof i === "object") { m = i.length; for (c = 0; c < m; c += 1)typeof i[c] === "string" && (d = i[c], (h = l(d, b)) && f.push(o(d) + (e ? ": " : ":") + h)) } else for (d in b) Object.prototype.hasOwnProperty.call(b, d) && (h = l(d, b)) && f.push(o(d) + (e ? ": " : ":") + h); h = f.length === 0 ? "{}" : e ? "{\n" + e + f.join(",\n" + e) + "\n" + g + "}" : "{" + f.join(",") +
+					"}"; e = g; return h
+		}
+	} if (typeof Date.prototype.toJSON !== "function") Date.prototype.toJSON = function () { return isFinite(this.valueOf()) ? this.getUTCFullYear() + "-" + k(this.getUTCMonth() + 1) + "-" + k(this.getUTCDate()) + "T" + k(this.getUTCHours()) + ":" + k(this.getUTCMinutes()) + ":" + k(this.getUTCSeconds()) + "Z" : null }, String.prototype.toJSON = Number.prototype.toJSON = Boolean.prototype.toJSON = function () { return this.valueOf() }; var q = /[\u0000\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g,
+		p = /[\\\"\x00-\x1f\x7f-\x9f\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g, e, n, r = { "\u0008": "\\b", "\t": "\\t", "\n": "\\n", "\u000c": "\\f", "\r": "\\r", '"': '\\"', "\\": "\\\\" }, i; if (typeof JSON.stringify !== "function") JSON.stringify = function (a, j, c) {
+			var d; n = e = ""; if (typeof c === "number") for (d = 0; d < c; d += 1)n += " "; else typeof c === "string" && (n = c); if ((i = j) && typeof j !== "function" && (typeof j !== "object" || typeof j.length !== "number")) throw Error("JSON.stringify"); return l("",
+				{ "": a })
+		}; if (typeof JSON.parse !== "function") JSON.parse = function (a, e) {
+			function c(a, d) { var g, f, b = a[d]; if (b && typeof b === "object") for (g in b) Object.prototype.hasOwnProperty.call(b, g) && (f = c(b, g), f !== void 0 ? b[g] = f : delete b[g]); return e.call(a, d, b) } var d, a = String(a); q.lastIndex = 0; q.test(a) && (a = a.replace(q, function (a) { return "\\u" + ("0000" + a.charCodeAt(0).toString(16)).slice(-4) })); if (/^[\],:{}\s]*$/.test(a.replace(/\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g, "@").replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g,
+				"]").replace(/(?:^|:|,)(?:\s*\[)+/g, ""))) return d = eval("(" + a + ")"), typeof e === "function" ? c({ "": d }, "") : d; throw new SyntaxError("JSON.parse");
+		}
+})();
 
 
 /************ HTML5 Local Storage Support *************/
-(function () {if (!this.localStorage)if (this.globalStorage)try {this.localStorage=this.globalStorage}catch(e) {}else{var a=document.createElement("div");a.style.display="none";document.getElementsByTagName("head")[0].appendChild(a);if (a.addBehavior) {a.addBehavior("#default#userdata");var d=this.localStorage={length:0,setItem:function (b,d) {a.load("localStorage");b=c(b);a.getAttribute(b)||this.length++;a.setAttribute(b,d);a.save("localStorage")},getItem:function (b) {a.load("localStorage");b=c(b);return a.getAttribute(b)},
-removeItem:function (b) {a.load("localStorage");b=c(b);a.removeAttribute(b);a.save("localStorage");this.length=0},clear:function () {a.load("localStorage");for (var b=0;attr=a.XMLDocument.documentElement.attributes[b++];)a.removeAttribute(attr.name);a.save("localStorage");this.length=0},key:function (b) {a.load("localStorage");return a.XMLDocument.documentElement.attributes[b]}},c=function (a) {return a.replace(/[^-._0-9A-Za-z\xb7\xc0-\xd6\xd8-\xf6\xf8-\u037d\u37f-\u1fff\u200c-\u200d\u203f\u2040\u2070-\u218f]/g,
-"-")};a.load("localStorage");d.length=a.XMLDocument.documentElement.attributes.length}}})();
+(function () {
+	if (!this.localStorage) if (this.globalStorage) try { this.localStorage = this.globalStorage } catch (e) { } else {
+		var a = document.createElement("div"); a.style.display = "none"; document.getElementsByTagName("head")[0].appendChild(a); if (a.addBehavior) {
+			a.addBehavior("#default#userdata"); var d = this.localStorage = {
+				length: 0, setItem: function (b, d) { a.load("localStorage"); b = c(b); a.getAttribute(b) || this.length++; a.setAttribute(b, d); a.save("localStorage") }, getItem: function (b) { a.load("localStorage"); b = c(b); return a.getAttribute(b) },
+				removeItem: function (b) { a.load("localStorage"); b = c(b); a.removeAttribute(b); a.save("localStorage"); this.length = 0 }, clear: function () { a.load("localStorage"); for (var b = 0; attr = a.XMLDocument.documentElement.attributes[b++];)a.removeAttribute(attr.name); a.save("localStorage"); this.length = 0 }, key: function (b) { a.load("localStorage"); return a.XMLDocument.documentElement.attributes[b] }
+			}, c = function (a) {
+				return a.replace(/[^-._0-9A-Za-z\xb7\xc0-\xd6\xd8-\xf6\xf8-\u037d\u37f-\u1fff\u200c-\u200d\u203f\u2040\u2070-\u218f]/g,
+					"-")
+			}; a.load("localStorage"); d.length = a.XMLDocument.documentElement.attributes.length
+		}
+	}
+})();
