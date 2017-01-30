@@ -96,12 +96,12 @@ module.exports = function (app) {
             res.json(dbUser);
         });
     });
-    app.post("/api/create", function (req, res) {
+    app.post("/api/neworder", function (req, res) {
         db.Order.create({
-            order: req.body.email,
-            totalcost: simpleCart_total
-        }).then(function (dbUser) {
-            res.json(dbUser);
+            order: req.body.order,
+            totalcost: req.body.totalcost,
+           }).then(function (dbOrder) {
+            res.json(dbOrder);
         });
     });
 

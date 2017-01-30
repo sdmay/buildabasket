@@ -104,14 +104,15 @@
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> {{!--
     <script>$("#carousel-example-generic").carousel();</script>--}} {{!--Modal function, checkout.handlebars--}}
-    
-    
-    
-    
-    
+
+
+
+
+
     <!--Shopping Cart begins here-->
     <script src="../assets/js/simpleCart.js"></script>
     <script>
+
     simpleCart({
         checkout: { 
             type: "PayPal" , 
@@ -124,8 +125,23 @@
     <script>
     $("#submit").click(function(){
         console.log("CLICK")
-        $("#myModal").modal("toggle");
-  
+        
+         var newOrder = {
+            order: $(".simpleCart_items").val().trim(),
+            totalcost: $(".simpleCart_total").val().trim(),
+             orderedforbirthday: false,
+            orderedforanniversary: false
+           
+  };
+
+  // Send an AJAX POST-request with jQuery
+  $.post("/api/neworder", newOrder)
+    // On success, run the following code
+    .done(function(data) {
+      // Log the data we found
+      console.log(data);
+    });
+$("#myModal").modal("toggle");
         
     });
         $("#closeModal").click(function(){
