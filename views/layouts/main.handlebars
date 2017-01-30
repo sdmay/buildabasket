@@ -207,13 +207,15 @@ $("#authenticateUser").on("click", function(event) {
 
 });
 
-
+var i = [];
 $("#emptyBasket").on("click", function() {
+    var img = new Image();
+    img.src = $(this).siblings("img").attr("src");
     var p = $(this).siblings("img").attr("src");
-    var img1 = document.createElement("img");
-    img1.src = p;
-
-      console.log(img1)
+        console.log(p)
+        i.push(p)
+        console.log(i)
+         $('<img src="' + p + '"/>').appendTo("#empty")
      window.location.href='/item';
 });
 
