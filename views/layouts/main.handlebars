@@ -15,7 +15,7 @@
     <!--Font Awesome-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../assets/css/style.css">
-       <!--jQuery-->
+    <!--jQuery-->
     {{!--<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
         crossorigin="anonymous"></script>--}}
 
@@ -52,9 +52,9 @@
         </div>
         <!-- /.container-fluid -->
     </nav>
-    
-    
-    
+
+
+
     <!--Jumbotron-->
 
     <div class="jumbotron">
@@ -106,9 +106,6 @@
     <script>$("#carousel-example-generic").carousel();</script>--}} {{!--Modal function, checkout.handlebars--}}
 
 
-
-
-
     <!--Shopping Cart begins here-->
     <script src="../assets/js/simpleCart.js"></script>
     <script>
@@ -147,7 +144,19 @@ $("#myModal").modal("toggle");
     });
         $("#closeModal").click(function(){
         console.log("CLICK")
-        
+        var lessProduct = {
+            item_name: $(".item_name").val().trim(),
+            quantity: $(".item-quantity").val().trim()
+           
+  };
+
+
+        $.post("/api/lessproduct", lessProduct)
+    // On success, run the following code
+    .done(function(data) {
+      // Log the data we found
+      console.log(data);
+    });
         // $( ".billing" ).empty();
         // $( ".shipping" ).empty();
         $( ".total" ).empty();
