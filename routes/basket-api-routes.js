@@ -107,9 +107,10 @@ module.exports = function (app) {
     });
 
 app.post("/api/lessproduct", function (req, res) {
-     db.Item.update({quantity: quantity - req.body.item-quantity},
-    {where: {item_name: req.body.item-name}})
-    .then(function (result) {
+     db.Item.update({quantity: quantity},
+    {where: 
+        {item_name: item_name}
+    }).then(function (result) {
             console.log(result)
     });
     //     db.Item.findAll({where:{

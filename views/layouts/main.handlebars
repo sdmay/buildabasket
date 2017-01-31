@@ -123,40 +123,56 @@
     <script>
     $("#submit").click(function(){
         console.log("CLICK")
-        
-         var newOrder = {
-            order: $(".simpleCart_items").val().trim(),
-            totalcost: $(".simpleCart_total").val().trim(),
-            orderedforbirthday: false,
-            orderedforanniversary: false
+    //    console.log(cartColumns.name)
+//          var newOrder = {
+//             order: $(".item-name").val().trim(),
+//             totalcost: $(".simpleCart_total").val().trim(),
+//             orderedforbirthday: false,
+//             orderedforanniversary: false
            
-  };
+//   };
 
-  // Send an AJAX POST-request with jQuery
-  $.post("/api/neworder", newOrder)
+//   console.log(newOrder)
+// console.log(simpleCart.quantity())
+
+// console.log(quantity)
+
+var items = [];
+simpleCart.each(function( item , x ){
+    console.log(item)
+    console.log(item.options)
+    items.push( item.name );
+});
+console.log( items );
+var quantity = simpleCart.quantity();
+
+  var lessProduct = {
+            item_name:  $(".item-name").val(),
+            quantity: -quantity
+        //    $(".item-name1").val(),
+  };
+console.log(lessProduct)
+
+        $.post("/api/lessproduct", lessProduct)
     // On success, run the following code
+    console.log("POSTING INNNN")
     .done(function(data) {
       // Log the data we found
       console.log(data);
     });
+  // Send an AJAX POST-request with jQuery
+//   $.post("/api/neworder", newOrder)
+//     // On success, run the following code
+//     .done(function(data) {
+//       // Log the data we found
+//       console.log(data);
+//     });
 $("#myModal").modal("toggle");
         
     });
         $("#closeModal").click(function(){
         console.log("CLICK")
-        var lessProduct = {
-            item_name: $(".item_name").val().trim(),
-            quantity: $(".item-quantity").val().trim()
-           
-  };
-
-
-        $.post("/api/lessproduct", lessProduct)
-    // On success, run the following code
-    .done(function(data) {
-      // Log the data we found
-      console.log(data);
-    });
+      
         // $( ".billing" ).empty();
         // $( ".shipping" ).empty();
         $( ".total" ).empty();
