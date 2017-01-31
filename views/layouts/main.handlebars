@@ -123,58 +123,39 @@
     <script>
     $("#submit").click(function(){
         console.log("CLICK")
-    //    console.log(cartColumns.name)
-//          var newOrder = {
-//             order: $(".item-name").val().trim(),
-//             totalcost: $(".simpleCart_total").val().trim(),
-//             orderedforbirthday: false,
-//             orderedforanniversary: false
-           
-//   };
 
-//   console.log(newOrder)
-// console.log(simpleCart.quantity())
-
-// console.log(quantity)
-
-var items = [];
-simpleCart.each(function( item , x ){
+simpleCart.each(function (item, x) {
+    var item_name = (item.get('name'));
+    var quantity = (item.get('quantity'));
     console.log(item)
-    console.log(item.options)
-    items.push( item.name );
-});
-console.log( items );
-var quantity = simpleCart.quantity();
+    console.log
+
+// var quantity = simpleCart.quantity();
 
   var lessProduct = {
-            item_name:  $(".item-name").val(),
+            item_name:  item_name,
             quantity: -quantity
-        //    $(".item-name1").val(),
+        
   };
 console.log(lessProduct)
 
         $.post("/api/lessproduct", lessProduct)
+        $("#myModal").modal("toggle");
     // On success, run the following code
     console.log("POSTING INNNN")
     .done(function(data) {
       // Log the data we found
+      
       console.log(data);
     });
-  // Send an AJAX POST-request with jQuery
-//   $.post("/api/neworder", newOrder)
-//     // On success, run the following code
-//     .done(function(data) {
-//       // Log the data we found
-//       console.log(data);
-//     });
-$("#myModal").modal("toggle");
-        
     });
+    })
+    
+
+
+
         $("#closeModal").click(function(){
         console.log("CLICK")
-      
-        // $( ".billing" ).empty();
-        // $( ".shipping" ).empty();
         $( ".total" ).empty();
         $( ".simpleCart_total" ).empty();
         $( ".simpleCart_quantity" ).empty();

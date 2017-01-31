@@ -107,23 +107,21 @@ module.exports = function (app) {
     });
 
 app.post("/api/lessproduct", function (req, res) {
-     db.Item.update({quantity: quantity},
-    {where: 
-        {item_name: item_name}
-    }).then(function (result) {
-            console.log(result)
-    });
-    //     db.Item.findAll({where:{
-    //         item_name: req.body.item-name},
-
-    //         quantity: {
-    //              req.body.item-quantity
-    //         }
-    //        }).then(function (dbOrder) {
-    //         res.json(dbOrder);
-    //     });
-    // });
+    console.log(req.body)
+    console.log(req.body.quantity)
+    console.log(req.body.item_name)
+     db.CompleteBasket.update({
+         quantity: req.body.quantity},
+                   
+   { where: {
+        basket_name: req.body.item_name}
    
+    }).then(function (dbItem) {
+        console.log("ALL DONE ALLEGEDLY")
+            console.log(dbItem)
+            res.json(dbItem);
+            
+    });  
    
 });
 }
