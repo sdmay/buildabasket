@@ -127,48 +127,58 @@
 simpleCart.each(function (item, x) {
     var item_name = (item.get('name'));
     var quantity = (item.get('quantity'));
-    console.log(item)
-    console.log
+    var total = (item.get('price'));
+    console.log(item);
 
-// var quantity = simpleCart.quantity();
+    var lessProduct = {
+                item_name:  item_name,
+                quantity: quantity,
+                total: total,
+                userId: 1
+            
+    };
+    console.log(lessProduct)
 
-  var lessProduct = {
-            item_name:  item_name,
-            quantity: -quantity
-        
-  };
-console.log(lessProduct)
+    $.post("/api/lessproduct", lessProduct)
+    .done(function(err, data) {
+        // Log the data we found
+        if(err){
+            console.log(err)
+        }
+        console.log("LESSPRODUCT");
+        $.post("/api/neworder", lessProduct)
+        .done(function(err, data) {
+            // Log the data we found
+            if(err){
+                console.log(err)
+            }
+            console.log("NEWORDER");
+            $.post("/api/subtractitem", lessProduct)
+            .done(function(err, data) {
+                // Log the data we found
+                if(err){
+                    // console.log(err)
+                }
+                console.log(data);
+                console.log("SUBTRACT")
 
-        $.post("/api/lessproduct", lessProduct)
-        $("#myModal").modal("toggle");
-    // On success, run the following code
-    console.log("POSTING INNNN")
-    .done(function(data) {
-      // Log the data we found
-      
-      console.log(data);
+            });
+        });
     });
-    });
-    })
-    
+});
+  
+$("#myModal").modal("toggle");
+})    // On success, run the following code
 
+$("#closeModal").click(function(){
+    simpleCart_quantity = 0;
+    window.location.href='/';
 
-
-        $("#closeModal").click(function(){
-        console.log("CLICK")
-        $( ".total" ).empty();
-        $( ".simpleCart_total" ).empty();
-        $( ".simpleCart_quantity" ).empty();
-        simpleCart_total = 0;
-        simpleCart_quantity = 0;
-        window.location.href='/';
-        
-    });
+});
 
 // Checkout modal
  $(".addToCart").click(function(){
-        console.log("CLICK")
-$("#completeModal").modal("toggle");
+ $("#completeModal").modal("toggle");
  });
 
     // CREATE USER
