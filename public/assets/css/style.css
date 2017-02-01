@@ -39,10 +39,7 @@
 #front_droppable{
     z-index: 100;
     position: absolute;
-
     transform: scale(1.75, 1.75);
-/*margin-left: 55px;
-    margin-top: 35px;*/
 }
 
 .site-name {
@@ -51,6 +48,7 @@
 }
 
 #b1front{
+    pointer-events: none;
     position: absolute;
     left: 275px;
     top: 128px;
@@ -63,6 +61,7 @@
 }
 
 .b1front{
+    pointer-events: none;
     position: absolute;
     left: 313px;
     top: 94px;
@@ -75,6 +74,7 @@
 }
 
 .b2front{
+    pointer-events: none;
     position: absolute;
     left: 314px;
     top: 94px
@@ -86,6 +86,7 @@
 }
 
 .b3front{
+    pointer-events: none;
     position: absolute;
     left: 314px;
     top: 94px;
@@ -98,6 +99,7 @@
 }
 
 .b4front{
+    pointer-events: none;
     position: absolute;
     left: 314px;
     top: 94px;
@@ -110,6 +112,7 @@
 }
 
 .b5front{
+    pointer-events: none;
     position: absolute;
     left: 314px;
     top: 94px;
@@ -122,6 +125,7 @@
 }
 
 .b6front{
+    pointer-events: none;
     position: absolute;
     left: 314px;
     top: 93px;
@@ -134,6 +138,7 @@
 }
 
 .b7front{
+    pointer-events: none;
     position: absolute;
     left: 312px;
     top: 96px;
