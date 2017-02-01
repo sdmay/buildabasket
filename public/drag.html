@@ -6,16 +6,66 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Basket Build Application</title>
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <title>Eric's' Application</title>
+  <!--<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">-->
   <link rel="stylesheet" href="/Users/etetenbaum 1/Sites/buildabasket/public/assets/css/style.css">
+  <!--CSS links-->
+  <link rel="stylesheet" href="./assets/css/reset.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
   <style>
-  #draggable { width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; }
+  #draggable { width: 100px; height: 200px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; }
   #droppable { width: 150px; height: 150px; padding: 0.5em; float: left; margin: 10px; }
   </style>
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script
+  src="https://code.jquery.com/jquery-2.2.4.js"
+  integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
+  crossorigin="anonymous"></script>
+  <!--<script src="https://code.jquery.com/jquery-1.12.4.js"></script>-->
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+</head>
+<body>
+ <!--Spacer-->
+    <div class="col-sm-1"></div>
+
+<!--Build Area-->
+<div id="draggable" class="ui-widget-content">
+  <img src="./assets/images/basket_item/PNG/coffee_candy.png" alt="">
+</div>
+
+<div id="droppable" class="ui-widget-header">
+    <div id="basketBack">
+        <img id="b1back" src="./assets/images/empty_basket/Basket_Backs/brown_with_straw.png" alt="">
+    </div>
+</div>
+ 
+ <div id="front_droppable" class="ui-widget-header">
+     <div id="basketFront">
+  <img id="b1front" src="./assets/images/empty_basket/Basket_Fronts/brown_with_straw_front.png" alt="">\
+     </div>
+</div>
+
+
+<!--Basket Selction Menu-->
+<div class="basketHolder">
+<div class="scroll basket1">
+    <img id="b1" src="./assets/images/empty_basket/Basket_Backs/brown_with_straw.png" alt=""> 
+    <img id="b2" src="./assets/images/empty_basket/Basket_Backs/brown_round.png" alt="">
+    <img id="b3" src="./assets/images/empty_basket/Basket_Backs/red_bow.png" alt="">
+    <img id="b4" src="./assets/images/empty_basket/Basket_Backs/blue_bow.png" alt="">
+    <img id="b5" src="./assets/images/empty_basket/Basket_Backs/wide_tan_.png" alt="">
+    <img id="b6" src="./assets/images/empty_basket/Basket_Backs/yellow_green.png" alt="">
+    <img id="b7" src="./assets/images/empty_basket/Basket_Backs/flat_brown.png" alt="">
+</div>
+</div>
+ 
+<!--Item Selction Menu
+<div class="scroll">
+    <img src="./assets/images/empty_basket/Basket_Backs/brown_with_straw.png" alt=""> 
+    <img src="./assets/images/empty_basket/Basket_Backs/brown_round.png" alt="">
+    <img src="./assets/images/empty_basket/Basket_Backs/red_bow.png" alt="">
+</div>-->
   <script>
+
 
 // Drag and Drop Build Area
   $( function() {
@@ -29,22 +79,51 @@
       }
     });
   } );
+
+  $("#b1").on("click", function(){
+      console.log("worked");
+      $("#basketBack").html("<img class='b1back' src='./assets/images/empty_basket/Basket_Backs/brown_with_straw.png'>");
+      $("#basketFront").html("<img class='b1front' src='./assets/images/empty_basket/Basket_Fronts/brown_with_straw_front.png'>");
+  })
+
+  $("#b2").on("click", function(){
+      console.log("worked");
+      $("#basketBack").html("<img class='b2back' src='./assets/images/empty_basket/Basket_Backs/brown_round.png'>");
+      $("#basketFront").html("<img class='b2front' src='./assets/images/empty_basket/Basket_Fronts/brown_round_front.png'>");
+  })
+
+    $("#b3").on("click", function(){
+      console.log("worked");
+      $("#basketBack").html("<img class='b3back' src='./assets/images/empty_basket/Basket_Backs/red_bow.png'>");
+      $("#basketFront").html("<img class='b3front' src='./assets/images/empty_basket/Basket_Fronts/red_bow_front.png'>");
+  })
+
+  $("#b4").on("click", function(){
+      console.log("worked");
+      $("#basketBack").html("<img class='b3back' src='./assets/images/empty_basket/Basket_Backs/red_bow.png'>");
+      $("#basketFront").html("<img class='b3front' src='./assets/images/empty_basket/Basket_Fronts/red_bow_front.png'>");
+  })
+
+    $("#b5").on("click", function(){
+      console.log("worked");
+      $("#basketBack").html("<img class='b3back' src='./assets/images/empty_basket/Basket_Backs/red_bow.png'>");
+      $("#basketFront").html("<img class='b3front' src='./assets/images/empty_basket/Basket_Fronts/red_bow_front.png'>");
+  })
+
+    $("#b6").on("click", function(){
+      console.log("worked");
+      $("#basketBack").html("<img class='b3back' src='./assets/images/empty_basket/Basket_Backs/red_bow.png'>");
+      $("#basketFront").html("<img class='b3front' src='./assets/images/empty_basket/Basket_Fronts/red_bow_front.png'>");
+  })
+
+    $("#b7").on("click", function(){
+      console.log("worked");
+      $("#basketBack").html("<img class='b3back' src='./assets/images/empty_basket/Basket_Backs/red_bow.png'>");
+      $("#basketFront").html("<img class='b3front' src='./assets/images/empty_basket/Basket_Fronts/red_bow_front.png'>");
+  })
+
+//   $(".basketHolder").html('<div class="newbasketClass">');
   </script>
-</head>
-<body>
- 
-<div id="draggable" class="ui-widget-content">
-  <img src="./assets/images/basket_item/PNG/coffee_candy.png" alt="">
-</div>
- 
-<div id="droppable" class="ui-widget-header">
-  <img src="./assets/images/empty_basket/Basket_Backs/brown_with_straw.png" alt="">
-</div>
- 
- <div id="front_droppable" class="ui-widget-header">
-  <img src="./assets/images/empty_basket/Basket_Fronts/brown_with_straw_front.png" alt="">
-</div>
- 
 </body>
 </html>
 

@@ -9,18 +9,18 @@
 <div class="col-sm-6">
 <h2>New Customers:</h2>
 <center>
-<form class= "create-form" action="/api/create" method="POST">
+<form class= "create-form" method="POST">
   <ul>  
     <li>
     <label for="email">Enter Email:</label>
-    <input type="text" name="email" >
+    <input type="text" name="email" id="emailID">
     </li>
     <li>
     <label for="password">Enter Password:</label>
-    <input type="text" name="password" >
+    <input type="text" name="password" id="passwordID" >
     </li>
     <li>
-    <input type="submit" value="Create an Account">
+    <input id="createAccount" type="submit" value="Create an Account" >
     </li>
   </ul>
 </form>
@@ -29,18 +29,18 @@
 <div class="col-sm-6">
 <h2>Registered Customers:</h2>
 <center> 
-<form class= "create-form" action="/api/authenticate" method="GET">
+<form class= "create-form" method="POST">
  <ul>  
      <li>
     <label for="email">Enter Email:</label>
-    <input type="text" name="email" >
+    <input type="text" name="email" id="userID">
     </li>
     <li>
     <label for="password">Enter Password:</label>
-    <input type="text" name="password" >
+    <input type="text" name="password" id="userPasswordID">
     </li>
     <li>
-    <input type="submit" value="Login">
+    <input id = "authenticateUser" type="submit" value="Login">
     </li>
  </ul>
 </form>

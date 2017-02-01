@@ -38,10 +38,68 @@
     z-index: 100;
     position: absolute;
     transform: scale(1.5, 1.5);
-    margin-left: 55px;
-    margin-top: 35px;
+    /*margin-left: 55px;
+    margin-top: 35px;*/
 }
 
 .site-name {
     font-family: 'Arsenal', sans-serif;
+}
+
+#b1front{
+    left: 280px;
+    position: absolute;
+    top: 130px;
+}
+
+#b1back{
+    position: absolute;
+    left: 300px;
+    top: 150px;
+}
+
+.b1front{
+    position: absolute;
+    left: 325px;
+    top: 100px;
+}
+
+.b1back{
+    position: absolute;
+    left: 340px;
+    top: 120px;
+}
+
+.b2front{
+    position: absolute;
+    left: 325px;
+    top: 100px;
+}
+.b2back{
+    position: absolute;
+    left: 340px;
+    top: 120px;
+}
+
+.b3front{
+    position: absolute;
+    left: 325px;
+    top: 100px;
+}
+
+.b3back{
+    position: absolute;
+    left: 340px;
+    top: 120px;
+}
+
+.basket1{
+    width: 260px;
+}
+
+div.scroll {
+    background-color: #FFFFCC;
+    width: 300px;
+    height: 750px;
+    overflow: scroll;
 }

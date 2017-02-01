@@ -8,7 +8,7 @@ module.exports = function (app) {
 
         db.CompleteBasket.findAll({}).then(function (dbCompleteBasket) {
             // console.log(dbCompleteBasket);
-            res.render('completebasket', {dbCompleteBasket});
+            res.render('completebasket', { dbCompleteBasket });
             // res.json(dbCompleteBasket);
         });
     });
@@ -17,9 +17,9 @@ module.exports = function (app) {
 
         db.EmptyBasket.findAll({}).then(function (dbEmptyBasket) {
             // console.log(dbEmptyBasket);
-            res.render('emptybasket', {dbEmptyBasket})
+            res.render('emptybasket', { dbEmptyBasket })
             // res.json(dbEmptyBasket);
-        
+
         });
     });
 
@@ -27,65 +27,74 @@ module.exports = function (app) {
 
         db.Item.findAll({}).then(function (dbItem) {
             // console.log(dbItem);
-            res.render('items', {dbItem})
+            res.render('items', { dbItem })
             // res.json(dbItem);
         });
     });
 
     app.get("/contact", function (req, res) {
 
-                   // console.log(dbItem);
-            res.render('contact')
-            // res.json(dbItem);
-       
+        // console.log(dbItem);
+        res.render('contact')
+        // res.json(dbItem);
+
     });
 
-        app.get("/login", function (req, res) {
+    app.get("/login", function (req, res) {
 
-                   // console.log(dbItem);
-            res.render('login')
-            // res.json(dbItem);
-       
+        // console.log(dbItem);
+        res.render('login')
+        // res.json(dbItem);
+
     });
 
     app.get("/about", function (req, res) {
 
-                   // console.log(dbItem);
-            res.render('about')
-            // res.json(dbItem);
-       
+        // console.log(dbItem);
+        res.render('about')
+        // res.json(dbItem);
+
     });
 
     app.get("/refund", function (req, res) {
 
-                   // console.log(dbItem);
-            res.render('refund')
-            // res.json(dbItem);
-       
+        // console.log(dbItem);
+        res.render('refund')
+        // res.json(dbItem);
+
     });
 
     app.get("/faq", function (req, res) {
 
-                   // console.log(dbItem);
-            res.render('faq')
-            // res.json(dbItem);
-       
+        // console.log(dbItem);
+        res.render('faq')
+        // res.json(dbItem);
+
     });
 
     app.get("/blog", function (req, res) {
 
-                   // console.log(dbItem);
-            res.render('blog')
-            // res.json(dbItem);
-       
+        // console.log(dbItem);
+        res.render('blog')
+        // res.json(dbItem);
+
     });
 
-        app.get("/checkout", function (req, res) {
+    app.get("/checkout", function (req, res) {
 
-                   // console.log(dbItem);
-            res.render('checkout')
-            // res.json(dbItem);
-       
+        // console.log(dbItem);
+        res.render('checkout')
+        // res.json(dbItem);
+
+    });
+
+    app.post("/api/create", function (req, res) {
+        db.User.create({
+            email: req.body.email,
+            password: req.body.password
+        }).then(function (dbUser) {
+            res.json(dbUser);
+        });
     });
 
 
