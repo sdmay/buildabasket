@@ -130,50 +130,26 @@ simpleCart.each(function (item, x) {
 
     var lessProduct = {
                 item_name:  item_name,
-              
                 quantity: quantity,
-              
                 total: total,
                 userId: 1
             
     };
-     var lessItem = {
-                
-                item_name1: item_name1,
-                
-                quantity1: quantity1
-                
-            
-    };
     console.log(lessProduct)
-    console.log(lessItem)
     $.post("/api/lessproduct", lessProduct)
-    .done(function(err, data) {
+    .done(function(data) {
         // Log the data we found
-        if(err){
-            console.log(err)
-        }
+       
         console.log("LESSPRODUCT");
-        $.post("/api/neworder", lessProduct)
-        .done(function( data) {
-            // Log the data we found
-           
-            console.log("NEWORDER");
-             $.post("/api/subtractitem", lessItem)
-
-            .done(function( data) {
-                // Log the data we found
-                
-                console.log(data);
-                console.log("SUBTRACT")
-            });
-        });
+        console.log(data)
+        $("#myModal").modal("toggle");
+    // On success, run the following code
          
     });
 });
+    });
   
-$("#myModal").modal("toggle");
-})    // On success, run the following code
+
 
 $("#closeModal").click(function(){
     simpleCart_quantity = 0;
