@@ -37,15 +37,19 @@
 #front_droppable{
     z-index: 100;
     position: absolute;
+<<<<<<< HEAD
     transform: scale(1.5, 1.5);
     /*margin-left: 55px;
     margin-top: 35px;*/
+=======
+>>>>>>> 5573f8fdde3dffa9bd169f4576f45ecf0eacedec
 }
 
 .site-name {
     font-family: 'Arsenal', sans-serif;
 }
 
+<<<<<<< HEAD
 #b1front{
     left: 280px;
     position: absolute;
@@ -103,3 +107,34 @@ div.scroll {
     height: 750px;
     overflow: scroll;
 }
+=======
+div.c-wrapper{
+    width: 80%; /* for example */
+    margin: auto;
+}
+
+.carousel-inner > .item > img, 
+.carousel-inner > .item > a > img{
+width: 100%; /* use this, or not */
+margin: auto;
+}
+
+.center{
+    text-align: center
+}
+
+.image {
+            height: 300px;
+            width: 300px;
+}
+/*
+.modal-header {
+    background-color: cadetblue;
+}
+
+.modal-footer {
+   
+    background-color: cadetblue;
+
+}*/
+>>>>>>> 5573f8fdde3dffa9bd169f4576f45ecf0eacedec

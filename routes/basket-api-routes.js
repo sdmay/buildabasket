@@ -88,14 +88,40 @@ module.exports = function (app) {
 
     });
 
-    app.post("/api/create", function (req, res) {
-        db.User.create({
-            email: req.body.email,
-            password: req.body.password
-        }).then(function (dbUser) {
-            res.json(dbUser);
+    // app.post("/api/create", function (req, res) {
+    //     db.User.create({
+    //         email: req.body.email,
+    //         password: req.body.password
+    //     }).then(function (dbUser) {
+    //         res.json(dbUser);
+    //     });
+    // });
+
+    app.post("/api/neworder", function (req, res) {
+        db.Order.create({
+            order: req.body.order,
+            totalcost: req.body.totalcost,
+           }).then(function (dbOrder) {
+            res.json(dbOrder);
         });
     });
 
-
+app.post("/api/lessproduct", function (req, res) {
+    console.log(req.body)
+    console.log(req.body.quantity)
+    console.log(req.body.item_name)
+     db.CompleteBasket.update({
+         quantity: req.body.quantity},
+                   
+   { where: {
+        basket_name: req.body.item_name}
+   
+    }).then(function (dbItem) {
+        console.log("ALL DONE ALLEGEDLY")
+            console.log(dbItem)
+            res.json(dbItem);
+            
+    });  
+   
+});
 }

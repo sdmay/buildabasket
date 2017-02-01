@@ -1,3 +1,4 @@
+<<<<<<< HEAD
  <!--Jumbotron-->
     <div class="jumbotron">
         <h2>A great selection of great gift baskets</h2>
@@ -7,46 +8,40 @@
     </div>
 
 
+=======
+>>>>>>> 5573f8fdde3dffa9bd169f4576f45ecf0eacedec
 {{#each dbCompleteBasket}}
-        <div class="col-sm-3">
-            
-            <img src="{{image}}" alt="" class="image">
-            <p>{{basket_name}}</p>
-            <p>{{description}}</p>
-            <p>${{price}}</p>
-            <a class="btn btn-primary btn-lg" href="#" role="button"></a>
-            
+<div class="col-sm-3">
+    <div class="simpleCart_shelfItem">
+        <h2 class="item_name"> {{basket_name}} </h2>
+        <img src="{{image}}" alt="" class="image">
+        <p>{{description}}</p>
+        <span class="item_price">${{price}}</span>
+        <a class="btn btn-primary btn-lg item_add addToCart" href="javascript:;"> Add to Cart </a>
+    </div>
+</div>
+{{/each}}
+<!-- Modal -->
+<div class="modal fade" id="completeModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Item Added to Cart</h4>
+            </div>
+            <div class="modal-body">
+                <p>You have placed in your cart:<br>
+                    <span class="simpleCart_items"></span>
+                    <br>Total: <span class="simpleCart_total"></span></p>
+                <a href="/checkout">
+                    <button type="button" class="btn btn-default" id="checkout">Checkout</button></a>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="close">Keep Shopping</button>
+            </div>
         </div>
-        {{/each}}
 
-    <!--<ul> {{#each dbCompleteBasket}}
-        <li>
-            <img src="{{image}}" alt="">
-            <p>{{basket_name}}</p>
-            <p>{{price}}</p>
-            <a class="btn btn-primary btn-lg" href="#" role="button"></a>
-            </li>
-            {{/each}}
-    </ul>-->
-
-<!--<div class="row">
-    <div class="col-md-6">
-        <h2 class="words">You have CREATED:</h2>
-
-        <ul class="list-group center">
-            {{#each dbCompleteBasket}}
-            
-            <li class="list-group-item answer">
-                <p>                 
-                    <form action="burgers/update/{{id}}?_method=PUT" method="POST">
-                        <input type="hidden" name="id" value="{{id}}">
-                        
-                       {{basket_name}} <button type="submit" class="btn btn-danger" id="{{id}}">Devour!</button>
-                    </form>
-                </p>
-            </li>
-            
-            {{/each}}
-        </ul>
-
-    </div>-->
+    </div>
+</div>
