@@ -13,15 +13,7 @@ module.exports = function (app) {
         });
     });
 
-    app.get("/empty", function (req, res) {
-
-        db.EmptyBasket.findAll({}).then(function (dbEmptyBasket) {
-            // console.log(dbEmptyBasket);
-            res.render('emptybasket', { dbEmptyBasket })
-            // res.json(dbEmptyBasket);
-
-        });
-    });
+// removed path for emptyBasket.handlebars, moving contents to /item as scroll
 
     app.get("/item", function (req, res) {
 
@@ -98,30 +90,52 @@ module.exports = function (app) {
     // });
 
     app.post("/api/neworder", function (req, res) {
+        console.log(req.body)
         db.Order.create({
-            order: req.body.order,
-            totalcost: req.body.totalcost,
-           }).then(function (dbOrder) {
+            
+            order: req.body.item_name,
+            totalcost: req.body.total,
+            UserId: req.body.userId
+             
+        }).then(function (dbOrder) {
             res.json(dbOrder);
         });
     });
 
-app.post("/api/lessproduct", function (req, res) {
-    console.log(req.body)
-    console.log(req.body.quantity)
-    console.log(req.body.item_name)
-     db.CompleteBasket.update({
-         quantity: req.body.quantity},
-                   
-   { where: {
-        basket_name: req.body.item_name}
-   
-    }).then(function (dbItem) {
-        console.log("ALL DONE ALLEGEDLY")
-            console.log(dbItem)
-            res.json(dbItem);
-            
-    });  
-   
-});
+    app.post("/api/lessproduct", function (req, res) {
+        // console.log(req.body)
+        // console.log(req.body.quantity)
+        // console.log(req.body.item_name)
+        db.CompleteBasket.findOne({
+            where: { basket_name: req.body.item_name.trim() }
+        })
+            .then(function (completeBasket) {
+                completeBasket.quantity -= parseInt(req.body.quantity);
+                completeBasket.save().then(function (dbItem) {
+                    console.log("ALL DONE ALLEGEDLY")
+                    console.log(dbItem)
+                    res.json(dbItem);
+
+                });
+            });
+    });
+
+    app.post("/api/subtractitem", function (req, res) {
+        console.log(req.body)
+        db.Item.findOne({
+            where: { item_name: req.body.item_name.trim() }
+        })
+        .then(function (item) {
+            console.log("IN IT to WIN IT")
+            console.log(item);
+            console.log(item.quantity);
+                item.quantity -= parseInt(req.body.quantity);
+                 item.save().then(function (dbBasketItem) {
+                    
+                    console.log(dbBasketItem)
+                    res.json(dbBasketItem);
+        });
+    
+        });
+    });
 }
