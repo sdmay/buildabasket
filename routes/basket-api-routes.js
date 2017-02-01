@@ -113,22 +113,14 @@ module.exports = function (app) {
     //     });
     // });
 
-    app.post("/api/neworder", function (req, res) {
-        console.log(req.body)
-        
-    });
 
     app.post("/api/lessproduct", function (req, res, next) {
-        // console.log(req.body)
-        // console.log(req.body.quantity)
-        // console.log(req.body.item_name)
-        
         db.CompleteBasket.findOne({
             where: { item_name: req.body.item_name.trim() }
                 
         
            })  .then(function (completeBasket) {
-            //    console.log(completeBasket)
+      
                             if(!completeBasket){
                             console.log("NOT COMPLETE")
                             db.Item.findOne({
@@ -138,7 +130,7 @@ module.exports = function (app) {
                                itemBasket.quantity -= parseInt(req.body.quantity);
                                  itemBasket.save().then(function (dbBasketItem) {
                                 res.json(dbBasketItem);
-            // console.log(itemBasket);
+           
                                     })  
                             });
                             }
@@ -149,11 +141,13 @@ module.exports = function (app) {
                     // console.log("ALL DONE ALLEGEDLY")
                     // console.log(dbItem)
                     res.json(dbItem); 
-                })
+                });
                     
                     // console.log(dbBasketItem)
                    
         }
-          
+           });
 
+
+});
 }
