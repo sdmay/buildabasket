@@ -37,10 +37,11 @@ app.use(morgan('dev'));
 
 require("./routes/html-api-routes.js")(app);
 require("./routes/basket-api-routes.js")(app);
+// require("./routes/web-token-api.js")(app);
+// require("./routes/jwt-api-routes.js")(app);
 // require("./routes/-api-routes.js")(app);
-// require("./routes/-api-routes.js")(app);
-//require("./routes/web-token-api.js")(app);
-//RD
+
+
 var webtokenroutes = require("./routes/web-token-api.js");
 app.use("/", webtokenroutes);
 

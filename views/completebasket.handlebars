@@ -1,12 +1,3 @@
-{{!--Moving Jumbotron to index page only--}}
-    <!--Jumbotron-->
-    <div class="jumbotron">
-        <h2>A great selection of great gift baskets</h2>
-        <p>Custom gift baskets start at $XX.XX</p><br>
-        <a class="btn btn-primary btn-lg" href="/complete" role="button">Buy one of ours</a>
-        <a class="btn btn-primary btn-lg" href="/empty" role="button">Build your own!</a>
-    </div>
-
 {{#each dbCompleteBasket}}
 <div class="col-sm-3">
     <div class="simpleCart_shelfItem">
@@ -15,6 +6,7 @@
         <!--<input type="text" value="1" class="item_Quantity">-->
         <p>{{description}}</p>
         <p><span class="item_price">${{price}}</span></p>
+
         <a class="btn btn-primary btn-lg item_add addToCart" href="javascript:;"> Add to Cart </a>
     </div>
 </div>
@@ -44,25 +36,3 @@
       
     </div>
   </div>
-
-<!--<div class="row">
-    <div class="col-md-6">
-        <h2 class="words">You have CREATED:</h2>
-
-        <ul class="list-group center">
-            {{#each dbCompleteBasket}}
-            
-            <li class="list-group-item answer">
-                <p>                 
-                    <form action="burgers/update/{{id}}?_method=PUT" method="POST">
-                        <input type="hidden" name="id" value="{{id}}">
-                        
-                       {{basket_name}} <button type="submit" class="btn btn-danger" id="{{id}}">Devour!</button>
-                    </form>
-                </p>
-            </li>
-            
-            {{/each}}
-        </ul>
-
-    </div>-->

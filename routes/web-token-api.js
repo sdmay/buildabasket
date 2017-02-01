@@ -6,7 +6,7 @@ var jwt = require("jsonwebtoken");
 
 // router
 // =============================================================
-// module.exports = function (app) {
+module.exports = function (app) {
 
 
     // GET route for getting all of the posts
@@ -21,7 +21,7 @@ var jwt = require("jsonwebtoken");
     router.post("/api/authenticate", function (req, res) {
         console.log("INSIDE AUTHENTICATE");
         db.User.findOne({
-            email: req.body.email
+            email: req.body.emailID
         }).then(function success(user) {
             console.log(user)
             if (!user) {
@@ -90,8 +90,8 @@ var jwt = require("jsonwebtoken");
     router.post("/create", function (req, res) {
         console.log("INSIDE CREATE");
         db.User.create({
-            email: req.body.email,
-            password: req.body.password
+            email: req.body.emailID,
+            password: req.body.passwordID
         }).then(function success(result) {
             res.json(result);
         });
@@ -103,8 +103,8 @@ var jwt = require("jsonwebtoken");
             res.json(result);
         })
     });
-// }
-module.exports = router;
+}
+// module.exports = router;
 //app.use('/api', router);
 
 // eyJhbGciOiJIUzI1NiJ9.VG9t.lsIvGkitNhC2MIfCPPF_95UzaA_p3NCYPRZhelbRtC4

@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css?family=Arsenal|Pontano+Sans|Quicksand" rel="stylesheet">    <!--Font Awesome-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../assets/css/style.css">
-       <!--jQuery-->
+    <!--jQuery-->
     {{!--<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
         crossorigin="anonymous"></script>--}}
 
@@ -45,6 +45,7 @@
                     <li><a href="/checkout"><i class="fa fa-shopping-cart fa-1x" aria-hidden="true"></i> <span class="simpleCart_total"></span> (<span class="simpleCart_quantity"></span>)</a>
                     </li>
 
+<<<<<<< HEAD
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -63,10 +64,26 @@
 
     {{!--/views/xxxx.handlebars content populates here--}}
     <div class="row">
+=======
+<<<<<<< HEAD
 
-        {{{body}}}
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/about">About</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li><a href="/login">Sign Up or Login</a></li>
+        <li><a href="#"><i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></a></i></li>
+>>>>>>> bb43c4c2079fd2917e6eec70bec3175d814557f4
 
-    </div>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+    
+<div class="row">
+{{{body}}}
+</div>
 
 
     <!--Footer-->
@@ -101,8 +118,14 @@
 
     </div>
 
+<<<<<<< HEAD
     {{!--Bootstrap JS--}}
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+=======
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> {{!--
+    <script>$("#carousel-example-generic").carousel();</script>--}} {{!--Modal function, checkout.handlebars--}}
+
+>>>>>>> bb43c4c2079fd2917e6eec70bec3175d814557f4
 
     <!--Shopping Cart begins here-->
     <script src="../assets/js/simpleCart.js"></script>
@@ -121,43 +144,62 @@
     <script>
     $("#submit").click(function(){
         console.log("CLICK")
-        
-         var newOrder = {
-            order: $(".simpleCart_items").val().trim(),
-            totalcost: $(".simpleCart_total").val().trim(),
-            orderedforbirthday: false,
-            orderedforanniversary: false
-           
-  };
 
-  // Send an AJAX POST-request with jQuery
-  $.post("/api/neworder", newOrder)
-    // On success, run the following code
-    .done(function(data) {
-      // Log the data we found
-      console.log(data);
+simpleCart.each(function (item, x) {
+    var item_name = (item.get('name'));
+    var quantity = (item.get('quantity'));
+    var total = (item.get('price'));
+    console.log(item);
+
+    var lessProduct = {
+                item_name:  item_name,
+                quantity: quantity,
+                total: total,
+                userId: 1
+            
+    };
+    console.log(lessProduct)
+
+    $.post("/api/lessproduct", lessProduct)
+    .done(function(err, data) {
+        // Log the data we found
+        if(err){
+            console.log(err)
+        }
+        console.log("LESSPRODUCT");
+        $.post("/api/neworder", lessProduct)
+        .done(function(err, data) {
+            // Log the data we found
+            if(err){
+                console.log(err)
+            }
+            console.log("NEWORDER");
+            $.post("/api/subtractitem", lessProduct)
+            .done(function(err, data) {
+                // Log the data we found
+                if(err){
+                    // console.log(err)
+                }
+                console.log(data);
+                console.log("SUBTRACT")
+
+            });
+        });
     });
+});
+  
 $("#myModal").modal("toggle");
-        
-    });
-        $("#closeModal").click(function(){
-        console.log("CLICK")
-        
-        // $( ".billing" ).empty();
-        // $( ".shipping" ).empty();
-        $( ".total" ).empty();
-        $( ".simpleCart_total" ).empty();
-        $( ".simpleCart_quantity" ).empty();
-        simpleCart_total = 0;
-        simpleCart_quantity = 0;
-        window.location.href='/';
-        
-    });
+})    // On success, run the following code
+
+$("#closeModal").click(function(){
+    simpleCart_quantity = 0;
+    window.location.href='/';
+
+});
 
 // Checkout modal
  $(".addToCart").click(function(){
-        console.log("CLICK")
-$("#completeModal").modal("toggle");
+ $("#completeModal").modal("toggle");
  });
 
     // CREATE USER
