@@ -13,15 +13,21 @@ module.exports = function (app) {
         });
     });
 
-    app.get("/empty", function (req, res) {
-
+    app.get("/drag", function (req, res) {
+        var baskets;
         db.EmptyBasket.findAll({}).then(function (dbEmptyBasket) {
-            // console.log(dbEmptyBasket);
-            res.render('emptybasket', { dbEmptyBasket })
+            baskets = dbEmptyBasket;
+            //res.render('drag', {dbEmptyBasket})
+        }).then(function(ItemForBasket){
+                db.Item.findAll({}).then(function (dbItemForBasket){
+                    res.render('drag', {items: dbItemForBasket, baskets: baskets})
+                })
+
+            })
             // res.json(dbEmptyBasket);
 
         });
-    });
+    
 
     app.get("/item", function (req, res) {
 

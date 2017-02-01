@@ -1,0 +1,44 @@
+  <div class="col-sm-1"></div>
+
+<!--Build Area-->
+<div id="draggable" class="ui-widget-content">
+  <img src="./assets/images/basket_item/PNG/coffee_candy.png" alt="">
+</div>
+
+<div id="droppable" class="ui-widget-header">
+    <div id="basketBack">
+        <img id="b1back" src="./assets/images/empty_basket/Basket_Backs/brown_with_straw.png" alt="">
+    </div>
+</div>
+ 
+ <div id="front_droppable" class="ui-widget-header">
+     <div id="basketFront">
+  <img id="b1front" src="./assets/images/empty_basket/Basket_Fronts/brown_with_straw_front.png" alt="">\
+     </div>
+</div>
+
+
+<!--Basket Selction Menu-->
+<div class="basketHolder">
+    <div class="simpleCart_shelfItem">
+<div class="scroll basket1">
+  {{#each baskets}}
+    <img  src="{{image}}" alt="" class="item-name"> 
+
+    {{/each}}
+</div>
+</div>
+
+
+{{#each items}}
+<div class="col-sm-3">
+    <div class="simpleCart_shelfItem">
+        <h2 class="item_name"> {{item_name}} </h2>
+        
+        <span class="item_price">${{price}}</span>
+        <a class="item_add addToCart" href="javascript:;"><img src="{{image}}" alt="" class="image"></a>
+    </div>
+</div>
+{{/each}}
+
+</div>
