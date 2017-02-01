@@ -55,3 +55,18 @@
   })
 
 //  $(".basketHolder").html('<div class="newbasketClass">');
+
+// Saving empty basket selection
+$(".picture").on('click', function(){
+    var emptyBasket = {};
+    emptyBasket.imgpath = $('.picture')[0].src;
+
+    console.log(emptyBasket.imgpath);
+    sessionStorage.setItem('emptyBasketChoice', JSON.stringify(emptyBasket));
+
+    var basketChoice = JSON.parse(sessionStorage.getItem("emptyBasketChoice"));
+    console.log(basketChoice);
+
+    $('#empty').html("<img src=" + emptyBasket.imgpath + ">");
+
+});

@@ -1,4 +1,4 @@
-<script>
+
 
     simpleCart({
         cartStyle: "table",
@@ -8,4 +8,3 @@
         },
         tax:        0.075
     });
-</script>
