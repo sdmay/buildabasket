@@ -1,6 +1,6 @@
 module.exports = function (sequelize, DataTypes) {
   var CompleteBasket = sequelize.define("CompleteBasket", {
-    basket_name: {
+    item_name: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {

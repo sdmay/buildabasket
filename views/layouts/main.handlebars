@@ -122,19 +122,31 @@
 
 simpleCart.each(function (item, x) {
     var item_name = (item.get('name'));
+    var item_name1 = (item.get('name'));
     var quantity = (item.get('quantity'));
+    var quantity1 = (item.get('quantity'));
     var total = (item.get('price'));
     console.log(item);
 
     var lessProduct = {
                 item_name:  item_name,
+              
                 quantity: quantity,
+              
                 total: total,
                 userId: 1
             
     };
+     var lessItem = {
+                
+                item_name1: item_name1,
+                
+                quantity1: quantity1
+                
+            
+    };
     console.log(lessProduct)
-
+    console.log(lessItem)
     $.post("/api/lessproduct", lessProduct)
     .done(function(err, data) {
         // Log the data we found
@@ -143,23 +155,20 @@ simpleCart.each(function (item, x) {
         }
         console.log("LESSPRODUCT");
         $.post("/api/neworder", lessProduct)
-        .done(function(err, data) {
+        .done(function( data) {
             // Log the data we found
-            if(err){
-                console.log(err)
-            }
+           
             console.log("NEWORDER");
-            $.post("/api/subtractitem", lessProduct)
-            .done(function(err, data) {
+             $.post("/api/subtractitem", lessItem)
+
+            .done(function( data) {
                 // Log the data we found
-                if(err){
-                    // console.log(err)
-                }
+                
                 console.log(data);
                 console.log("SUBTRACT")
-
             });
         });
+         
     });
 });
   
@@ -240,7 +249,7 @@ $(".empty").on("click", function() {
 });
 
 // Saving empty basket selection
-$(".item_add").on('click', function(){
+$(".picture").on('click', function(){
     var emptyBasket = {};
     emptyBasket.imgpath = $('.picture')[0].src;
 

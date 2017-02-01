@@ -48,6 +48,13 @@ module.exports = function (app) {
         // res.json(dbItem);
 
     });
+        app.get("/itemcheckout", function (req, res) {
+
+        // console.log(dbItem);
+        res.render('itemcheckout')
+        // res.json(dbItem);
+
+    });
 
     app.get("/login", function (req, res) {
 
@@ -119,40 +126,45 @@ module.exports = function (app) {
         });
     });
 
-    app.post("/api/lessproduct", function (req, res) {
+    app.post("/api/lessproduct", function (req, res, next) {
         // console.log(req.body)
         // console.log(req.body.quantity)
         // console.log(req.body.item_name)
+        
         db.CompleteBasket.findOne({
-            where: { basket_name: req.body.item_name.trim() }
-        })
-            .then(function (completeBasket) {
-                completeBasket.quantity -= parseInt(req.body.quantity);
-                completeBasket.save().then(function (dbItem) {
-                    console.log("ALL DONE ALLEGEDLY")
-                    console.log(dbItem)
-                    res.json(dbItem);
-
-                });
-            });
-    });
-
-    app.post("/api/subtractitem", function (req, res) {
-        console.log(req.body)
-        db.Item.findOne({
+            where: { item_name: req.body.item_name.trim() }
+                
+        
+           })  .then(function (completeBasket) {
+               console.log(completeBasket)
+               if(!completeBasket){
+                console.log("NOT COMPLETE")
+                db.Item.findOne({
             where: { item_name: req.body.item_name.trim() }
         })
-        .then(function (item) {
+        .then(function (itemBasket) {
             console.log("IN IT to WIN IT")
-            console.log(item);
-            console.log(item.quantity);
-                item.quantity -= parseInt(req.body.quantity);
-                 item.save().then(function (dbBasketItem) {
+            console.log(itemBasket);
+            
+                itemBasket.quantity -= parseInt(req.body.quantity);
+                 itemBasket.save().then(function (dbBasketItem) {
                     
                     console.log(dbBasketItem)
                     res.json(dbBasketItem);
         });
     
         });
-    });
+            }
+                            
+               else{
+                completeBasket.quantity -= parseInt(req.body.quantity);
+                completeBasket.save().then(function (dbItem) {
+                    // console.log("ALL DONE ALLEGEDLY")
+                    // console.log(dbItem)
+                    res.json(dbItem); })
+               }
+            });
+                
+            });
+
 }
