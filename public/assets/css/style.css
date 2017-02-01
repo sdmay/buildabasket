@@ -5,7 +5,7 @@
 #droppable{
     z-index: 1;
     position: absolute;
-    transform: scale(1.5, 1.5);
+    transform: scale(1.75, 1.75);
 }
 
 #draggable{
@@ -37,23 +37,20 @@
 #front_droppable{
     z-index: 100;
     position: absolute;
-<<<<<<< HEAD
-    transform: scale(1.5, 1.5);
+    transform: scale(1.75, 1.75);
     /*margin-left: 55px;
     margin-top: 35px;*/
-=======
->>>>>>> 5573f8fdde3dffa9bd169f4576f45ecf0eacedec
 }
 
 .site-name {
     font-family: 'Arsenal', sans-serif;
 }
 
-<<<<<<< HEAD
+
 #b1front{
-    left: 280px;
     position: absolute;
-    top: 130px;
+    left: 275px;
+    top: 128px;
 }
 
 #b1back{
@@ -64,8 +61,8 @@
 
 .b1front{
     position: absolute;
-    left: 325px;
-    top: 100px;
+    left: 313px;
+    top: 94px;
 }
 
 .b1back{
@@ -76,8 +73,8 @@
 
 .b2front{
     position: absolute;
-    left: 325px;
-    top: 100px;
+    left: 314px;
+    top: 94px
 }
 .b2back{
     position: absolute;
@@ -87,11 +84,59 @@
 
 .b3front{
     position: absolute;
-    left: 325px;
-    top: 100px;
+    left: 314px;
+    top: 94px;
 }
 
 .b3back{
+    position: absolute;
+    left: 340px;
+    top: 120px;
+}
+
+.b4front{
+    position: absolute;
+    left: 314px;
+    top: 94px;
+}
+
+.b4back{
+    position: absolute;
+    left: 340px;
+    top: 120px;
+}
+
+.b5front{
+    position: absolute;
+    left: 314px;
+    top: 94px;
+}
+
+.b5back{
+    position: absolute;
+    left: 340px;
+    top: 120px;
+}
+
+.b6front{
+    position: absolute;
+    left: 314px;
+    top: 93px;
+}
+
+.b6back{
+    position: absolute;
+    left: 340px;
+    top: 120px;
+}
+
+.b7front{
+    position: absolute;
+    left: 312px;
+    top: 96px;
+}
+
+.b7back{
     position: absolute;
     left: 340px;
     top: 120px;
@@ -107,7 +152,7 @@ div.scroll {
     height: 750px;
     overflow: scroll;
 }
-=======
+
 div.c-wrapper{
     width: 80%; /* for example */
     margin: auto;
@@ -137,4 +182,4 @@ margin: auto;
     background-color: cadetblue;
 
 }*/
->>>>>>> 5573f8fdde3dffa9bd169f4576f45ecf0eacedec
+
