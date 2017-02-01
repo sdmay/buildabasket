@@ -1,29 +1,25 @@
-
-<!--{{#each dbCompleteBasket}}
-        <div class="col-sm-3">
-            
-            <img src="{{image}}" alt="" class="image">
-            <p>{{basket_name}}</p>
-            <p>{{description}}</p>
-            <p>${{price}}</p>
-            <a class="btn btn-primary btn-lg" href="#" role="button"></a>
-            
-        </div>
-        {{/each}}-->
-
+{{!--Moving Jumbotron to index page only--}}
+    <!--Jumbotron-->
+    <div class="jumbotron">
+        <h2>A great selection of great gift baskets</h2>
+        <p>Custom gift baskets start at $XX.XX</p><br>
+        <a class="btn btn-primary btn-lg" href="/complete" role="button">Buy one of ours</a>
+        <a class="btn btn-primary btn-lg" href="/empty" role="button">Build your own!</a>
+    </div>
 
 {{#each dbCompleteBasket}}
-        <div class="col-sm-3">
-<div class="simpleCart_shelfItem">
-    <h2 class="item_name"> {{basket_name}} </h2>
-    <img src="{{image}}" alt="" class="image">  
-    <!--<input type="text" value="1" class="item_Quantity">-->
-    <p>{{description}}</p>
-    <span class="item_price">${{price}}</span>
-    <a class="btn btn-primary btn-lg item_add addToCart" href="javascript:;"> Add to Cart </a>
+<div class="col-sm-3">
+    <div class="simpleCart_shelfItem">
+        <h2 class="item_name"> {{basket_name}} </h2>
+        <img src="{{image}}" alt="" class="image">  
+        <!--<input type="text" value="1" class="item_Quantity">-->
+        <p>{{description}}</p>
+        <p><span class="item_price">${{price}}</span></p>
+        <a class="btn btn-primary btn-lg item_add addToCart" href="javascript:;"> Add to Cart </a>
+    </div>
 </div>
-        </div>
-        {{/each}}
+{{/each}}
+
  <!-- Modal -->
   <div class="modal fade" id="completeModal" role="dialog">
     <div class="modal-dialog">
@@ -48,15 +44,6 @@
       
     </div>
   </div>
-    <!--<ul> {{#each dbCompleteBasket}}
-        <li>
-            <img src="{{image}}" alt="">
-            <p>{{basket_name}}</p>
-            <p>{{price}}</p>
-            <a class="btn btn-primary btn-lg" href="#" role="button"></a>
-            </li>
-            {{/each}}
-    </ul>-->
 
 <!--<div class="row">
     <div class="col-md-6">

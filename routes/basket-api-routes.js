@@ -13,15 +13,7 @@ module.exports = function (app) {
         });
     });
 
-    app.get("/empty", function (req, res) {
-
-        db.EmptyBasket.findAll({}).then(function (dbEmptyBasket) {
-            // console.log(dbEmptyBasket);
-            res.render('emptybasket', { dbEmptyBasket })
-            // res.json(dbEmptyBasket);
-
-        });
-    });
+// removed path for emptyBasket.handlebars, moving contents to /item as scroll
 
     app.get("/item", function (req, res) {
 
