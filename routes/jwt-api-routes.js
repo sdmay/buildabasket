@@ -1,49 +1,89 @@
-var db = require("../models");
-var jwt = require('jsonwebtoken');
-
 module.exports = function (app) {
-var newUser = function (req, res){
-  db.User.findOne({where:{ email: req.body.emailID }})
-    .then(function (user) {
-      if(!user){
-        db.User.create({ 
-          email: req.body.emailID, 
-          password: req.body.passwordID
-        })
-        .then(function(user){
-            console.log(user)
-              var myToken = jwt.sign({ user: user.id },
-                                      'secret',
-                                     { expiresIn: 24 * 60 * 60 });
-                                     console.log(myToken)
-              res.send(200, {'jwt': myToken,
-                             'userId':    user.id,
-                             'email': user.emailID });
-        });
-      } else {
-        res.status(404).json('Username already exist!');
-      }
-    })
-    .catch(function (err) {
-      res.send('Error creating user: ', err.message);
-    });
-};
+	var module = { };
 
-var authorize = function(req, res, next) {
- var token = req.body.token || req.headers["x-access-token"];
-  if (token) {
-   jwt.verify(token, 'secret', function(err, decoded) {
-      if (err) {
-         console.error("JWT Verification Error", err);
-         return res.status(403).send(err);
-      } else {
-         req.decoded = decoded;
-         return next();
-      }
-   });
-  } else {
-   res.status(403).send("Token not provided");
-   }
-}
+	var jwt = require("jsonwebtoken");
 
+	module.auth = function(req, res) {
+
+		if (req.body.email && req.body.password) {
+
+			var user = {
+				email    : req.body.email,
+				message : "This test-token was generated on the server side."
+			}
+
+			var token = jwt.sign(user, app.get("JWT_SECRET"))
+
+			res.json({
+				token : token
+			})
+
+		} else {
+
+			// Determine the reason for failure and set the upcoming error message
+			// to that reason.
+
+			if (!req.body.email && !req.body.password) var message = "No username or password supplied.";
+			else if (!req.body.username) var message = "No username supplied.";
+			else if (!req.body.password) var message = "No password supplied.";
+
+			// Return a JSON object to the user indicating the reason for failure.
+
+			res.json({
+				success : "false",
+				message : message
+			})
+		}
+
+	}
+
+	module.checkAuth = function(req, res) {
+
+		var token = req.headers['x-access-token'];
+
+		if (token) {
+
+			// Attempts to decode and verify the token.
+
+			jwt.verify(token, app.get("JWT_SECRET"), function(err, token_decoded) {
+
+				if (err) {
+
+					// If the token fails the verification process, do not move on
+					// to other routes and then return a JSON error message.
+
+					return res.json({
+						success : false,
+						message : "Failed to authenticate provided token."
+					})
+
+				} else {
+
+					// If token is verified, save information to the request object
+					// for use in other routes.
+
+					req.token         = token_decoded;
+					req.user          = token_decoded.user;
+					req.authenticated = true;
+
+					next();
+				}
+
+			})
+
+		} else {
+
+			// If the token is not found on the x-access-token header, do not move on
+			// to other routes and then return a JSON error message.
+
+			return res.json({
+				success : false,
+				message : "Token not found and/or not attached to x-access-token header."
+			})
+
+		}
+
+	}
+
+	return module;
 }

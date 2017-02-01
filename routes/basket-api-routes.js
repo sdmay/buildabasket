@@ -36,10 +36,6 @@ module.exports = function (app) {
         res.render('itemcheckout')
     });
 
-    app.get("/login", function (req, res) {
-        res.render('login')
-    });
-
     app.get("/about", function (req, res) {
         res.render('about')
     });
@@ -59,16 +55,6 @@ module.exports = function (app) {
     app.get("/checkout", function (req, res) {
         res.render('checkout')
     });
-
-    // app.post("/api/create", function (req, res) {
-    //     db.User.create({
-    //         email: req.body.email,
-    //         password: req.body.password
-    //     }).then(function (dbUser) {
-    //         res.json(dbUser);
-    //     });
-    // });
-
 
     app.post("/api/lessproduct", function (req, res, next) {
         db.CompleteBasket.findOne({
