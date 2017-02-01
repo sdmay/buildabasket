@@ -35,7 +35,9 @@
     z-index: 6;
     position: absolute;
 }*/
-
+  #draggable { width: 100px; height: 200px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; }
+  #droppable { width: 150px; height: 150px; padding: 0.5em; float: left; margin: 10px; }
+  
 #front_droppable{
     z-index: 100;
     position: absolute;

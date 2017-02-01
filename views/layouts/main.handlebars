@@ -15,8 +15,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../assets/css/style.css">
      <style>
-  #draggable { width: 100px; height: 200px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; }
-  #droppable { width: 150px; height: 150px; padding: 0.5em; float: left; margin: 10px; }
+
   </style>
   <script
   src="https://code.jquery.com/jquery-2.2.4.js"
@@ -98,14 +97,10 @@
 
     </div>
 
-<<<<<<< HEAD
+
     {{!--Bootstrap JS--}}
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-=======
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> {{!--
-    <script>$("#carousel-example-generic").carousel();</script>--}} {{!--Modal function, checkout.handlebars--}}
 
->>>>>>> bb43c4c2079fd2917e6eec70bec3175d814557f4
 
     <!--Shopping Cart begins here-->
     <script src="../assets/js/simpleCart.js"></script>
@@ -247,7 +242,7 @@ $(".empty").on("click", function() {
 // Saving empty basket selection
 $(".item_add").on('click', function(){
     var emptyBasket = {};
-    emptyBasket.imgpath = $('#carouselBasketItem')[0].src;
+    emptyBasket.imgpath = $('.picture')[0].src;
 
     console.log(emptyBasket.imgpath);
     sessionStorage.setItem('emptyBasketChoice', JSON.stringify(emptyBasket));
