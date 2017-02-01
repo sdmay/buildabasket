@@ -29,6 +29,9 @@ module.exports = function (app) {
         });
     
 
+// removed path for emptyBasket.handlebars, moving contents to /item as scroll
+
+
     app.get("/item", function (req, res) {
 
         db.Item.findAll({}).then(function (dbItem) {
