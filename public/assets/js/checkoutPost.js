@@ -27,9 +27,9 @@ simpleCart.each(function (item, x) {
     // On success, run the following code
          
     });
-    $("#myModal").modal("toggle");
+    
 });
-
+$("#myModal").modal("toggle");
     });
 
     
