@@ -37,6 +37,12 @@ simpleCart.each(function (item, x) {
  $(".addToCart").click(function(){
  $("#completeModal").modal("toggle");
  });
+ 
+
+
+
+ 
+
 
 $("#closeModal").click(function(){
     simpleCart_quantity = 0;

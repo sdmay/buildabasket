@@ -21,14 +21,19 @@ $(document).ready(function() {
     };
     console.log(userData.email + " " + userData.password)
     if (!userData.email || !userData.password) {
+       $("#badLoginModal").modal("toggle");
       console.log("THROW MY HANDS UP")
-      return;
+      emailInput1.val("");
+    passwordInput1.val("");
+      
     }
+    else{
     console.log("BEFORE LOGIN USER")
     // If we have an email and password we run the loginUser function and clear the form
     loginUser(userData.email, userData.password);
     emailInput1.val("");
     passwordInput1.val("");
+    }
   });
 
   // loginUser does a post to our "api/login" route and if successful, redirects us the the members page
