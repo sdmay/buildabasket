@@ -48,6 +48,10 @@ module.exports = function (app) {
         res.render('faq')
     });
 
+    // app.get("/login", function (req, res) {
+    //     res.render('login')
+    // });
+
     app.get("/blog", function (req, res) {
         res.render('blog')
     });

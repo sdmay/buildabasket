@@ -6,8 +6,6 @@
 // =============================================================
 var express = require("express");
 var bodyParser = require("body-parser");
-var jwt = require('jsonwebtoken');
-var jwt = require("jwt-simple");
 var morgan = require('morgan');
 var config = require('./config');
 var passport = require('passport');
@@ -50,10 +48,8 @@ app.use(passport.session());
 app.use(morgan('dev'));
 // Routes =============================================================
 
-
+require("./routes/basket-html-routes.js")(app);
 require("./routes/basket-api-routes.js")(app);
-// require("./routes/web-token-api.js")(app);
-// require("./routes/jwt-api-routes.js")(app);
 require("./routes/passport-local-api.js")(app);
 
 
