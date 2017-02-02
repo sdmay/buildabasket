@@ -21,10 +21,12 @@ $(document).ready(function() {
     };
     console.log(userData.email + " " + userData.password)
     if (!userData.email || !userData.password) {
-       $("#badLoginModal").modal("toggle");
+       
       console.log("THROW MY HANDS UP")
+     
       emailInput1.val("");
     passwordInput1.val("");
+      return;
       
     }
     else{
@@ -46,6 +48,7 @@ $(document).ready(function() {
       window.location.replace(data);
       // If there's an error, log the error
     }).catch(function(err) {
+       $("#badLoginModal").modal("toggle");
       console.log(err);
     });
   }
