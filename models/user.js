@@ -1,3 +1,5 @@
+var bcrypt = require("bcrypt-nodejs");
+
 module.exports = function (sequelize, DataTypes) {
   var User = sequelize.define("User", {
     email: {
@@ -19,6 +21,8 @@ module.exports = function (sequelize, DataTypes) {
       associate: function(models) {
         User.hasMany(models.Order);
       }
+    
+    
     },
     // Creating a custom method for our User model. This will check if an unhashed password entered by
     // The user can be compared to the hashed password stored in our database
