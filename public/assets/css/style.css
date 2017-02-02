@@ -7,7 +7,7 @@
 #droppable{
     z-index: 1;
     position: absolute;
-    transform: scale(1.5, 1.5);
+    transform: scale(1.75, 1.75);
 }
 
 #draggable{
@@ -39,9 +39,7 @@
 #front_droppable{
     z-index: 100;
     position: absolute;
-    transform: scale(1.5, 1.5);
-    /*margin-left: 55px;
-    margin-top: 35px;*/
+    transform: scale(1.75, 1.75);
 }
 
 .site-name {
@@ -50,9 +48,10 @@
 }
 
 #b1front{
-    left: 280px;
+    pointer-events: none;
     position: absolute;
-    top: 130px;
+    left: 275px;
+    top: 128px;
 }
 
 #b1back{
@@ -62,9 +61,10 @@
 }
 
 .b1front{
+    pointer-events: none;
     position: absolute;
-    left: 325px;
-    top: 100px;
+    left: 313px;
+    top: 94px;
 }
 
 .b1back{
@@ -74,9 +74,10 @@
 }
 
 .b2front{
+    pointer-events: none;
     position: absolute;
-    left: 325px;
-    top: 100px;
+    left: 314px;
+    top: 94px
 }
 .b2back{
     position: absolute;
@@ -85,12 +86,65 @@
 }
 
 .b3front{
+    pointer-events: none;
     position: absolute;
-    left: 325px;
-    top: 100px;
+    left: 314px;
+    top: 94px;
 }
 
 .b3back{
+    position: absolute;
+    left: 340px;
+    top: 120px;
+}
+
+.b4front{
+    pointer-events: none;
+    position: absolute;
+    left: 314px;
+    top: 94px;
+}
+
+.b4back{
+    position: absolute;
+    left: 340px;
+    top: 120px;
+}
+
+.b5front{
+    pointer-events: none;
+    position: absolute;
+    left: 314px;
+    top: 94px;
+}
+
+.b5back{
+    position: absolute;
+    left: 340px;
+    top: 120px;
+}
+
+.b6front{
+    pointer-events: none;
+    position: absolute;
+    left: 314px;
+    top: 93px;
+}
+
+.b6back{
+    position: absolute;
+    left: 340px;
+    top: 120px;
+}
+
+.b7front{
+    pointer-events: none;
+    position: absolute;
+    left: 312px;
+    top: 96px;
+}
+
+.b7back{
     position: absolute;
     left: 340px;
     top: 120px;

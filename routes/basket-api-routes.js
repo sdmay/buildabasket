@@ -13,7 +13,24 @@ module.exports = function (app) {
         });
     });
 
+    app.get("/drag", function (req, res) {
+        var baskets;
+        db.EmptyBasket.findAll({}).then(function (dbEmptyBasket) {
+            baskets = dbEmptyBasket;
+            //res.render('drag', {dbEmptyBasket})
+        }).then(function(ItemForBasket){
+                db.Item.findAll({}).then(function (dbItemForBasket){
+                    res.render('drag', {items: dbItemForBasket, baskets: baskets})
+                })
+
+            })
+            // res.json(dbEmptyBasket);
+
+        });
+    
+
 // removed path for emptyBasket.handlebars, moving contents to /item as scroll
+
 
     app.get("/item", function (req, res) {
 
