@@ -14,6 +14,15 @@ module.exports = function (sequelize, DataTypes) {
       },
       orderedforbirthday: {
           type: DataTypes.BOOLEAN
+      },
+      ShipAddress: {
+        type: DataTypes.TEXT
+      },
+      BillingAddress: {
+        type: DataTypes.TEXT
+      },
+      Shipped:{
+        type: DataTypes.BOOLEAN
       }
   },
     {

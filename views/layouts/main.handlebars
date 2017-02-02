@@ -16,8 +16,7 @@
     <link rel="stylesheet" href="../assets/css/style.css">
        <!--jQuery-->
      <style>
-  #draggable { width: 100px; height: 200px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; }
-  #droppable { width: 150px; height: 150px; padding: 0.5em; float: left; margin: 10px; }
+
   </style>
   <script
   src="https://code.jquery.com/jquery-2.2.4.js"
@@ -36,12 +35,21 @@
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
                     aria-expanded="false">
+<<<<<<< HEAD
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand site-name" href="/complete">FlowersSuck</a>
+=======
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+                <a class="navbar-brand site-name" href="/">FlowersSuck</a>
+>>>>>>> 07f84e60a848f7ac5e64fe4f51a35bd51d074257
             </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -49,8 +57,11 @@
                     <li><a href="/item">Build</a></li>
                     <li><a href="/about">About</a></li>
                     <li><a href="/contact">Contact</a></li>
-                    <li><a href="/login">My Account</a></li>
+                    <li><a href="/login" class="member-name">Login/signup</a></li>
                     <li><a href="/checkout"><i class="fa fa-shopping-cart fa-1x" aria-hidden="true"></i> <span class="simpleCart_total"></span> (<span class="simpleCart_quantity"></span>)</a>
+                    <li><a class="navbar-brand" href="/logout">
+        Logout
+      </a></li>
                     </li>
                 </ul>
                 </div><!-- /.navbar-collapse -->
@@ -60,9 +71,18 @@
     {{!--/views/xxxx.handlebars content populates here--}}
     <div class="row">
 
+<<<<<<< HEAD
         {{{body}}}
 
     </div>
+=======
+    
+<div class="row">
+            <h2>Welcome <span class="member-name"></span></h2>
+ 
+{{{body}}}
+</div>
+>>>>>>> 07f84e60a848f7ac5e64fe4f51a35bd51d074257
 
 
     <!--Footer-->
@@ -99,6 +119,7 @@
         </div>
 
     </div>
+<<<<<<< HEAD
 
     {{!--Bootstrap JS--}}
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -221,10 +242,31 @@ $(".empty").on("click", function() {
      window.location.href='/item';
 });
 
-
-</script>
-    </script>
+=======
+    {{!--Bootstrap JS--}}
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!--Shopping Cart begins here-->
+    <script src="../assets/js/simpleCart.js"></script>
+    <script src="../assets/js/shoppingcartconfig.js"></script>
+    <!--Checkout Click Events-->
+    <script src="../assets/js/checkoutPost.js"></script>
+    <!--Drag and Drop Code
     <script src = "../assets/js/drag.js"></script>
+    Create and Authenticate Users-->
+    <script src = "../assets/js/createUser.js"></script>
+    <script src = "../assets/js/authenticateUser.js"></script>
+    <script src="../assets/js/shoppingcartconfig.js"></script>
+
+    <!--New Auth API-->
+
+  <script type="text/javascript" src="assets/js/login.js"></script>
+// <script>// Checkout modal
+//  $(".addToCart").click(function(){
+//  $("#completeModal").modal("toggle");
+//  });
+//  </script>
+>>>>>>> 07f84e60a848f7ac5e64fe4f51a35bd51d074257
+
 </body>
 
 </html>

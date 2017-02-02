@@ -1,15 +1,14 @@
 var db = require("../models");
 
-// Routes
-// =============================================================
 module.exports = function (app) {
 
-    app.get("/complete", function (req, res) {
+    app.get("/red", function (req, res) {
+        res.redirect("/complete")
+    });
 
+    app.get("/complete", function (req, res) {
         db.CompleteBasket.findAll({}).then(function (dbCompleteBasket) {
-            // console.log(dbCompleteBasket);
             res.render('completebasket', { dbCompleteBasket });
-            // res.json(dbCompleteBasket);
         });
     });
 
@@ -17,142 +16,78 @@ module.exports = function (app) {
         var baskets;
         db.EmptyBasket.findAll({}).then(function (dbEmptyBasket) {
             baskets = dbEmptyBasket;
-            //res.render('drag', {dbEmptyBasket})
-        }).then(function(ItemForBasket){
-                db.Item.findAll({}).then(function (dbItemForBasket){
-                    res.render('drag', {items: dbItemForBasket, baskets: baskets})
-                })
-
+        }).then(function (ItemForBasket) {
+            db.Item.findAll({}).then(function (dbItemForBasket) {
+                res.render('drag', { items: dbItemForBasket, baskets: baskets })
             })
-            // res.json(dbEmptyBasket);
-
-        });
-    
-
-// removed path for emptyBasket.handlebars, moving contents to /item as scroll
-
+        })
+    });
 
     app.get("/item", function (req, res) {
-
         db.Item.findAll({}).then(function (dbItem) {
-            // console.log(dbItem);
             res.render('items', { dbItem })
-            // res.json(dbItem);
         });
     });
 
     app.get("/contact", function (req, res) {
-
-        // console.log(dbItem);
         res.render('contact')
-        // res.json(dbItem);
-
     });
-
-    app.get("/login", function (req, res) {
-
-        // console.log(dbItem);
-        res.render('login')
-        // res.json(dbItem);
-
+    app.get("/itemcheckout", function (req, res) {
+        res.render('itemcheckout')
     });
 
     app.get("/about", function (req, res) {
-
-        // console.log(dbItem);
         res.render('about')
-        // res.json(dbItem);
-
     });
 
     app.get("/refund", function (req, res) {
-
-        // console.log(dbItem);
         res.render('refund')
-        // res.json(dbItem);
-
     });
 
     app.get("/faq", function (req, res) {
-
-        // console.log(dbItem);
         res.render('faq')
-        // res.json(dbItem);
-
     });
 
+    // app.get("/login", function (req, res) {
+    //     res.render('login')
+    // });
+
     app.get("/blog", function (req, res) {
-
-        // console.log(dbItem);
         res.render('blog')
-        // res.json(dbItem);
-
     });
 
     app.get("/checkout", function (req, res) {
-
-        // console.log(dbItem);
         res.render('checkout')
-        // res.json(dbItem);
-
     });
 
-    // app.post("/api/create", function (req, res) {
-    //     db.User.create({
-    //         email: req.body.email,
-    //         password: req.body.password
-    //     }).then(function (dbUser) {
-    //         res.json(dbUser);
-    //     });
-    // });
-
-    app.post("/api/neworder", function (req, res) {
-        console.log(req.body)
-        db.Order.create({
-            
-            order: req.body.item_name,
-            totalcost: req.body.total,
-            UserId: req.body.userId
-             
-        }).then(function (dbOrder) {
-            res.json(dbOrder);
-        });
-    });
-
-    app.post("/api/lessproduct", function (req, res) {
-        // console.log(req.body)
-        // console.log(req.body.quantity)
-        // console.log(req.body.item_name)
+    app.post("/api/lessproduct", function (req, res, next) {
         db.CompleteBasket.findOne({
-            where: { basket_name: req.body.item_name.trim() }
-        })
-            .then(function (completeBasket) {
+            where: { item_name: req.body.item_name.trim() }
+        }).then(function (completeBasket) {
+
+            if (!completeBasket) {
+
+                db.Item.findOne({
+                    where: { item_name: req.body.item_name.trim() }
+                }).then(function (itemBasket) {
+
+                    itemBasket.quantity -= parseInt(req.body.quantity);
+                    itemBasket.save().then(function (dbBasketItem) {
+                        res.json(dbBasketItem);
+
+                    })
+                });
+            }
+
+            else {
                 completeBasket.quantity -= parseInt(req.body.quantity);
                 completeBasket.save().then(function (dbItem) {
-                    console.log("ALL DONE ALLEGEDLY")
-                    console.log(dbItem)
                     res.json(dbItem);
-
                 });
-            });
-    });
 
-    app.post("/api/subtractitem", function (req, res) {
-        console.log(req.body)
-        db.Item.findOne({
-            where: { item_name: req.body.item_name.trim() }
-        })
-        .then(function (item) {
-            console.log("IN IT to WIN IT")
-            console.log(item);
-            console.log(item.quantity);
-                item.quantity -= parseInt(req.body.quantity);
-                 item.save().then(function (dbBasketItem) {
-                    
-                    console.log(dbBasketItem)
-                    res.json(dbBasketItem);
+            }
         });
-    
-        });
+
+
     });
 }

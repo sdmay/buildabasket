@@ -23,7 +23,7 @@
     <div class="simpleCart_shelfItem">
 <div class="scroll basket1">
   {{#each baskets}}
-    <img  src="{{image}}" alt="" class="item-name"> 
+    <img  src="{{image}}" alt="" class="item-name picture"> 
 
     {{/each}}
 </div>
@@ -36,9 +36,17 @@
         <h2 class="item_name"> {{item_name}} </h2>
         
         <span class="item_price">${{price}}</span>
-        <a class="item_add addToCart" href="javascript:;"><img src="{{image}}" alt="" class="image"></a>
+        <a class="item_add addToCart picture" href="javascript:;"><img src="{{image}}" alt="" class="image"></a>
     </div>
 </div>
 {{/each}}
+
+<div class="simpleCart_items" >
+	</div>
+
+
+
+<span class="simpleCart_total"></span>
+<a class="btn btn-primary btn-lg" href="/checkout"> Checkout </a>
 
 </div>
