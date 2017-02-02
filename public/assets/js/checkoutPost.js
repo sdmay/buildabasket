@@ -31,15 +31,13 @@ simpleCart.each(function (item, x) {
 $("#myModal").modal("toggle");
     });
   
-
-
-$("#closeModal").click(function(){
-    simpleCart_quantity = 0;
-    window.location.href='/';
-
-});
-
-// Checkout modal
  $(".addToCart").click(function(){
  $("#completeModal").modal("toggle");
  });
+
+$("#closeModal").click(function(){
+    simpleCart_quantity = 0;
+    window.location.href='/complete';
+
+});
+
