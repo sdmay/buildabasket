@@ -35,21 +35,12 @@
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
                     aria-expanded="false">
-<<<<<<< HEAD
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand site-name" href="/complete">FlowersSuck</a>
-=======
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-                <a class="navbar-brand site-name" href="/">FlowersSuck</a>
->>>>>>> 07f84e60a848f7ac5e64fe4f51a35bd51d074257
             </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -68,21 +59,12 @@
             </div><!-- /.container-fluid -->
         </nav>
 
-    {{!--/views/xxxx.handlebars content populates here--}}
-    <div class="row">
-
-<<<<<<< HEAD
-        {{{body}}}
-
-    </div>
-=======
     
 <div class="row">
             <h2>Welcome <span class="member-name"></span></h2>
  
 {{{body}}}
 </div>
->>>>>>> 07f84e60a848f7ac5e64fe4f51a35bd51d074257
 
 
     <!--Footer-->
@@ -119,130 +101,7 @@
         </div>
 
     </div>
-<<<<<<< HEAD
 
-    {{!--Bootstrap JS--}}
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-    <!--Shopping Cart begins here-->
-    <script src="../assets/js/simpleCart.js"></script>
-    <script>
-
-    simpleCart({
-        cartStyle: "table", 
-        checkout: { 
-            type: "PayPal" , 
-            email: "you@yours.com" 
-        },
-        tax:        0.075
-    }); 
-</script>
-
-    <script>
-    $("#submit").click(function(){
-        console.log("CLICK")
-        
-         var newOrder = {
-            order: $(".simpleCart_items").val().trim(),
-            totalcost: $(".simpleCart_total").val().trim(),
-            orderedforbirthday: false,
-            orderedforanniversary: false
-           
-  };
-
-  // Send an AJAX POST-request with jQuery
-  $.post("/api/neworder", newOrder)
-    // On success, run the following code
-    .done(function(data) {
-      // Log the data we found
-      console.log(data);
-    });
-$("#myModal").modal("toggle");
-        
-    });
-        $("#closeModal").click(function(){
-        console.log("CLICK")
-        
-        // $( ".billing" ).empty();
-        // $( ".shipping" ).empty();
-        $( ".total" ).empty();
-        $( ".simpleCart_total" ).empty();
-        $( ".simpleCart_quantity" ).empty();
-        simpleCart_total = 0;
-        simpleCart_quantity = 0;
-        window.location.href='/';
-        
-    });
-
-// Checkout modal
- $(".addToCart").click(function(){
-        console.log("CLICK")
-$("#completeModal").modal("toggle");
- });
-
-    // CREATE USER
-$("#createAccount").on("click", function(event) {
-  event.preventDefault();
-
-  // Make a newBook object
-  var newUser = {
-    email: $("#emailID").val().trim(),
-    password: $("#passwordID").val().trim()
-  };
-
-  // Send an AJAX POST-request with jQuery
-  $.post("/api/create", newUser)
-    // On success, run the following code
-    .done(function(data) {
-      // Log the data we found
-      console.log(data);
-    });
-
-  // Empty each input box by replacing the value with an empty string
-  $("#emailID").val("");
-  $("#passwordID").val("");
-
-});
-
-
-// Login
-$("#authenticateUser").on("click", function(event) {
-  event.preventDefault();
-
-  // Make a newBook object
-  var user = {
-    email: $("#userID").val().trim(),
-    password: $("#userPasswordID").val().trim()
-  };
-
-  // Send an AJAX POST-request with jQuery
-  $.post("/api/authenticate", user)
-    // On success, run the following code
-    .done(function(data) {
-      // Log the data we found
-      console.log(data);
-    });
-
-  // Empty each input box by replacing the value with an empty string
-  $("#userID").val("");
-  $("#userPasswordID").val("");
-  alert("User logged in");
-
-});
-
-var i = [];
-$(".empty").on("click", function() {
-    var img = new Image();
-    img.src = $(this).siblings("img").attr("src");
-    var p = $(this).siblings("img").attr("src");
-        console.log(p)
-        i.push(p)
-        console.log(i)
-         $('<img src="' + p + '"/>').appendTo("#empty")
-     window.location.href='/item';
-});
-
-=======
     {{!--Bootstrap JS--}}
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!--Shopping Cart begins here-->
@@ -260,13 +119,11 @@ $(".empty").on("click", function() {
     <!--New Auth API-->
 
   <script type="text/javascript" src="assets/js/login.js"></script>
-// <script>// Checkout modal
-//  $(".addToCart").click(function(){
-//  $("#completeModal").modal("toggle");
-//  });
-//  </script>
->>>>>>> 07f84e60a848f7ac5e64fe4f51a35bd51d074257
-
+  {{!--<script> Checkout modal
+  $(".addToCart").click(function(){
+  $("#completeModal").modal("toggle");
+  });
+  </script>--}}
 </body>
 
 </html>
