@@ -239,7 +239,7 @@ a:hover {
     color: #FFF;
 }
 .navbar-nav {
-    padding-right: 150px;
+    padding-right: 180px;
     font-family: 'Pontano Sans', sans-serif;
     font-size: 15px;
     letter-spacing: 1.5px;
@@ -417,4 +417,31 @@ body {
 
 #emailUpdatesButton {
     margin-left: 0;
+}
+
+.about-section {
+    margin-top: 30px;
+    margin-bottom: 10px;
+    background-color: #FBF5DF;
+    height: 900px;
+
+    border: 0.5px solid;
+    border-color: #FFF;
+}
+
+#about-para {
+    margin: 40px;  
+    text-align: justify;
+    font-size: 1.1em;
+}
+.headshot-img {
+    height: 175px;
+    width: 175px;
+    border-radius: 60%;
+
+    
+    border: 2px solid;
+    border-color: #DDD;
+
+    margin-left: 45px;
 }
