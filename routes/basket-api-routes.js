@@ -7,9 +7,15 @@ module.exports = function (app) {
     });
 
     app.get("/complete", function (req, res) {
+        if(req.user){
         db.CompleteBasket.findAll({}).then(function (dbCompleteBasket) {
             res.render('completebasket', { dbCompleteBasket });
+        
         });
+        }
+        else{
+            res.render('login')     
+        }
     });
 
     app.get("/drag", function (req, res) {

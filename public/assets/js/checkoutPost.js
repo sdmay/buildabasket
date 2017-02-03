@@ -50,3 +50,9 @@ $("#closeModal").click(function(){
 
 });
 
+$("#logout").click(function(){
+    simpleCart_quantity = 0;
+    window.location.href='/login';
+
+});
+

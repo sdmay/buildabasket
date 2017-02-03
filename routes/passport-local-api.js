@@ -28,15 +28,16 @@ module.exports = function (app) {
 // otherwise send back an error
 app.post("/api/signup", function (req, res) {
   console.log("TETSER" + req.body.email + " " + req.body.password);
+
   db.User.create({
     email: req.body.email,
     password: req.body.password
   }).then(function () {
     console.log("AAAAA")
     // TODO Add check if user exist
-    if(user){
-      return false
-    }
+    // if(user){
+    //   return false
+    // }
 
     res.redirect(307, "/api/login");
     // res.json("/members");
@@ -48,6 +49,8 @@ app.post("/api/signup", function (req, res) {
 
 // Route for logging user out
 app.get("/logout", function (req, res) {
+      simpleCart_quantity = 0;
+
   req.logout();
   res.redirect("/");
 });
