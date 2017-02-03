@@ -1,3 +1,8 @@
 
 <h1>Frequently Asked Questions...</h1>
-<img src ="http://www.roundabouttheatre.org/Roundabout/media/Roundabout/Production%20Photos/Too%20Much%20Too%20Much%20Too%20Many/TM3_02_1000x387.jpg?width=1000&height=387&ext=.jpg"/>
+{{#each dbFaqs}}
+<ul>
+<li>{{question}}<br>
+{{answer}}</li>
+</ul>
+{{/each}}

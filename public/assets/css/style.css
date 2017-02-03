@@ -2,11 +2,15 @@
 /*font-family: 'Arsenal', sans-serif;*/
 /*font-family: 'Quicksand', sans-serif;*/
 
-/*Brick Red (#7F1818 )
-yellow_backround.jpg for the background
-(images>other images: ;
-yellow_background.jpg)*/
 
+.author {
+    background-color: hotpink;
+}
+
+
+.blog {
+    color: darkred;
+}
 /*Drag and Drop Build Area*/
 #droppable{
     z-index: 1;
