@@ -1,23 +1,32 @@
     <div class="jumbotron">
-      <div class="jumbotron-content">
-        <h2>Welcome back, <span class="member-name"></span></h2>
+      <div class="container jumbotron-content">
+        {{!--<h2>Welcome back, <span class="member-name"></span></h2>--}}
+        <br><br>
           <h2>A great selection of great gift baskets</h2>
-          <p>Custom gift baskets start at $XX.XX</p><br>
-          <a class="btn btn-primary btn-lg" href="#" role="button">Buy one of ours</a>
-          <a class="btn btn-success btn-lg" href="/drag" role="button">Build your own!</a>
+          <p class="content1">
+            Custom gift baskets start at $49.99</p>
+            <br>
+          <a class="btn btn-lg" href="#completeBaskets" role="button">Buy one of ours</a>
+          <a class="btn btn-lg" href="/drag" role="button">Build your own!</a>
       </div>
+      <div class="collage-baskets">
+          <img src="./assets/images/complete_basket/all_baskets.png" id="completed-baskets-img" alt="A collage of the pre-made baskets">
+      </div>
+
     </div>
 
+
+<a NAME="completeBaskets"></a>
 {{#each dbCompleteBasket}}
-<div class="col-sm-3">
+<div class="col-sm-3 complete-main-content">
     <div class="simpleCart_shelfItem complete-basket-divs">
         <h2 class="item_name"> {{item_name}} </h2>
         <img src="{{image}}" alt="" class="image complete-basket-images">  
         <!--<input type="text" value="1" class="item_Quantity">-->
-        <p>{{description}}</p>
-        <p><span class="item_price">${{price}}</span></p>
+        <p class="desc">{{description}}</p>
+        <p><strong><span class="item_price">${{price}}</span></strong></p>
 
-        <a class="btn btn-primary btn-lg item_add addToCart" href="javascript:;"> Add to Cart </a>
+        <a class="btn btn-lg item_add addToCart" href="javascript:;"> <i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i> </a>
     </div>
 </div>
 {{/each}}
