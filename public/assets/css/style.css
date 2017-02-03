@@ -242,12 +242,13 @@ a:hover {
     padding-right: 180px;
     font-family: 'Pontano Sans', sans-serif;
     font-size: 15px;
-    letter-spacing: 1.5px;
+    letter-spacing: 1px;
 }
 
 .navbar-default .navbar-brand {
     font-family: 'Arsenal', sans-serif;
     font-weight: bold;
+    font-size: 2em;
     color: #FFF;
 }
 
@@ -445,3 +446,26 @@ body {
 
     margin-left: 45px;
 }
+
+.contact-section {
+    margin-top: 30px;
+    margin-bottom: 10px;
+    background-color: #FBF5DF;
+    height: 600px;
+    width: 898px;
+    padding-left: 15px;
+    padding-right: 15px;
+
+    border: 0.5px solid;
+    border-color: #FFF;
+}
+
+.contact-form {
+    margin: 40px;
+}
+
+/*todo: CSS for
+-build
+-contact
+-login/register
+-checkout*/
