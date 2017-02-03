@@ -72,15 +72,15 @@ $(".picture").on('click', function(){
 });
 
 $(".item").on('click', function(){
-    var emptyBasket = {};
-    emptyBasket.imgpath = $(this)[0].src;
+    var item = {};
+    item.imgpath = $(this)[0].src;
     // emptyBasketImageSource = emptyBasket.imgpath
-    console.log(emptyBasket.imgpath);
-    sessionStorage.setItem('emptyBasketChoice', JSON.stringify(emptyBasket));
+    console.log(item.imgpath);
+    sessionStorage.setItem('itemBasketChoice', JSON.stringify(item));
 
-    var basketChoice = JSON.parse(sessionStorage.getItem("emptyBasketChoice"));
-    console.log(basketChoice);
+    var itemChoice = JSON.parse(sessionStorage.getItem("itemBasketChoice"));
+    console.log(itemChoice);
 
-    $('#empty').html("<img src='" + basketChoice.imgpath + "'>");
+    $('#empty').appendTo("<img src='" + itemChoice.imgpath + "'>");
 
 });
