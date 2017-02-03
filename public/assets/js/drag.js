@@ -1,5 +1,6 @@
 
 
+
   $( function() {
     $( "#draggable" ).draggable();
     $( "#droppable" ).droppable({
@@ -11,6 +12,8 @@
       }
     });
   } );
+
+
 
   $("#b1").on("click", function(){
       console.log("worked");
@@ -70,7 +73,7 @@ $(".picture").on('click', function(){
     $('#empty').html("<img src='" + basketChoice.imgpath + "'>");
 
 });
-
+//item click
 $(".item").on('click', function(){
     var item = {};
     item.imgpath = $(this)[0].src;
