@@ -55,18 +55,32 @@
   })
 
 //  $(".basketHolder").html('<div class="newbasketClass">');
-
+// var emptyBasketImageSource;
 // Saving empty basket selection
 $(".picture").on('click', function(){
     var emptyBasket = {};
-    emptyBasket.imgpath = $('.picture')[0].src;
-
+    emptyBasket.imgpath = $(this)[0].src;
+    // emptyBasketImageSource = emptyBasket.imgpath
     console.log(emptyBasket.imgpath);
     sessionStorage.setItem('emptyBasketChoice', JSON.stringify(emptyBasket));
 
     var basketChoice = JSON.parse(sessionStorage.getItem("emptyBasketChoice"));
     console.log(basketChoice);
 
-    $('#empty').html("<img src=" + emptyBasket.imgpath + ">");
+    $('#empty').html("<img src='" + basketChoice.imgpath + "'>");
+
+});
+
+$(".item").on('click', function(){
+    var item = {};
+    item.imgpath = $(this)[0].src;
+    // emptyBasketImageSource = emptyBasket.imgpath
+    console.log(item.imgpath);
+    sessionStorage.setItem('itemBasketChoice', JSON.stringify(item));
+
+    var itemChoice = JSON.parse(sessionStorage.getItem("itemBasketChoice"));
+    console.log(itemChoice);
+
+    $('#empty').appendTo("<img src='" + itemChoice.imgpath + "'>");
 
 });

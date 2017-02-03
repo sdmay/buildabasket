@@ -34,6 +34,9 @@ app.post("/api/signup", function (req, res) {
   }).then(function () {
     console.log("AAAAA")
     // TODO Add check if user exist
+    if(user){
+      return false
+    }
 
     res.redirect(307, "/api/login");
     // res.json("/members");
