@@ -2,7 +2,13 @@
 /*font-family: 'Arsenal', sans-serif;*/
 /*font-family: 'Quicksand', sans-serif;*/
 
+.author {
+    background-color: hotpink;
+}
 
+.blog {
+    color: darkred;
+}
 /*Drag and Drop Build Area*/
 #droppable{
     z-index: 1;

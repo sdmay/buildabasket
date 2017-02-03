@@ -45,15 +45,25 @@ module.exports = function (app) {
     });
 
     app.get("/faq", function (req, res) {
-        res.render('faq')
+        console.log("Blogit")
+        db.Faq.findAll({}).then(function (dbFaqs) {
+            console.log("ASASASA " + dbFaqs)
+            res.render('faq', { dbFaqs })
+        });
+        
     });
-
+   
     // app.get("/login", function (req, res) {
     //     res.render('login')
     // });
 
-    app.get("/blog", function (req, res) {
-        res.render('blog')
+   app.get("/blog", function (req, res) {
+       console.log("Blogit")
+        db.Blogs.findAll({}).then(function (dbBlogs) {
+            console.log("ASASASA " + dbBlogs)
+            res.render('blog', { dbBlogs })
+        });
+        
     });
 
     app.get("/checkout", function (req, res) {
