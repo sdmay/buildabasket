@@ -83,7 +83,8 @@ $(".item").on('click', function(){
 
     var itemChoice = JSON.parse(sessionStorage.getItem("itemBasketChoice"));
     console.log(itemChoice);
-
-    $('#empty').appendTo("<img src='" + itemChoice.imgpath + "'>");
+    console.log(itemChoice.imgpath);
+    console.log("<img src='" + itemChoice.imgpath+ "'>")
+    $("<img src='" + itemChoice.imgpath+ "'>").append('#basketBack');
 
 });
