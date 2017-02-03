@@ -2,6 +2,10 @@
 /*font-family: 'Arsenal', sans-serif;*/
 /*font-family: 'Quicksand', sans-serif;*/
 
+/*Brick Red (#7F1818 )
+yellow_backround.jpg for the background
+(images>other images: ;
+yellow_background.jpg)*/
 
 /*Drag and Drop Build Area*/
 #droppable{
@@ -192,21 +196,35 @@ div.c-wrapper{
     border-bottom: none;
     border-radius: 0;
     height: 90px;
+    width: 100%;
     padding: 10px 80px 0px 30px;
     margin-bottom: 0;
-    background-color: #FFF;
+    background-color: #7F1818;
+    /*background-image: url("../images/other-images/yellow_background.jpg");*/
+
+    /*shadow styles*/
+    -webkit-box-shadow: 0px 2px 3px 0px rgba(184,184,184,1);
+    -moz-box-shadow: 0px 2px 3px 0px rgba(184,184,184,1);
+    box-shadow: 0px 2px 3px 0px rgba(184,184,184,1);
 }
 
 .navbar-brand {
     padding-left: 50px;
+    color: #FFF;
 }
 .navbar-nav {
     font-family: 'Pontano Sans', sans-serif;
     font-size: 15px;
 }
 
+.navbar-default .navbar-nav > li > a {
+  color: #FFF
+}
+
 #footer {
-    padding-left: 90px;
+    margin: 0px;
+    padding-left: 0;
+    background-color: #7F1818;
 }
 
 /*SimpleCart styles for navbar*/
@@ -216,13 +234,34 @@ div.c-wrapper{
 }
 
 .jumbotron {
-    width: 100%;
-    background-color: #FFF;
-    padding: 60px;
+    background-color: #DDD;
+
+    /*shadow styles*/
+    -webkit-box-shadow: 0px 2px 3px 0px rgba(184,184,184,1);
+    -moz-box-shadow: 0px 2px 3px 0px rgba(184,184,184,1);
+    box-shadow: 0px 2px 3px 0px rgba(184,184,184,1);
+
 }
 
 .row {
-    padding: 50px;
-    overflow: hidden;
+    width: 100%;
+    /*overflow: hidden;*/
 }
 
+.main-content {
+    background-image: url("../images/other-images/yellow_background.jpg");
+    margin: 0px;
+}
+
+/*complete basket styles*/
+.complete-basket-divs {
+    width: 250px;
+    border-style: 1px;
+    border-width: 1px;
+    border-color: #7F1818;
+}
+
+.complete-basket-images {
+    height: 245px;
+    width: 225px;
+}
