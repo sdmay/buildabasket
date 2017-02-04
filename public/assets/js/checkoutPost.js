@@ -50,7 +50,7 @@ $("#closeModal").click(function(){
 
 });
 
-<<<<<<< HEAD
+// <<<<<<< HEAD
 // JotForm button ID
    $("#input_18").click(function(){
         console.log("CLICK")
@@ -101,11 +101,11 @@ $("#myModal").modal("toggle");
 $("#closeModal").click(function(){
     simpleCart_quantity = 0;
     window.location.href='/complete';
-=======
+// =======
 $("#logout").click(function(){
     simpleCart_quantity = 0;
     window.location.href='/login';
->>>>>>> 857d0fc9946cb19378b6a0afcc66ba6ea40026d2
+// >>>>>>> 857d0fc9946cb19378b6a0afcc66ba6ea40026d2
 
 });
 

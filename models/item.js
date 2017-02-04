@@ -28,6 +28,13 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.TEXT,
       allowNull: false
     }
-  });
+  },{
+    classMethods: {
+      associate: function(models){
+        Item.hasMany(models.OrderItems);
+      }
+    }
+  }
+  );
   return Item;
 };

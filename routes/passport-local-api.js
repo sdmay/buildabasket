@@ -28,22 +28,26 @@ module.exports = function (app) {
 // otherwise send back an error
 app.post("/api/signup", function (req, res) {
   console.log("TETSER" + req.body.email + " " + req.body.password);
-
-  db.User.create({
+db.User.findAll({
+      where: { email: req.body.email}
+  }).then(function (result) {
+    if(result.length != 0) {
+    console.log("Email already exists");
+    var err = {"err": "Email already exists"};
+    res.redirect(307, "/api/login");
+    }else {
+    db.User.create({
     email: req.body.email,
     password: req.body.password
   }).then(function () {
     console.log("AAAAA")
-    // TODO Add check if user exist
-    // if(user){
-    //   return false
-    // }
-
     res.redirect(307, "/api/login");
     // res.json("/members");
   }).catch(function (err) {
     console.log("ERROR AT END +" + err)
     res.json(err);
+  });
+    }
   });
 });
 

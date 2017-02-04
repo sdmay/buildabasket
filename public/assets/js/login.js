@@ -81,6 +81,7 @@ $(document).ready(function() {
       console.log("SIGN UP " + data)
       window.location.replace(data);
     }).catch(function(err) {
+       $("#badSignupModal").modal("toggle");
       console.log(err);
     });
   }
